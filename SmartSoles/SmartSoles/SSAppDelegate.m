@@ -25,6 +25,7 @@
     SSConnectViewController *ssConnect = [[SSConnectViewController alloc] initWithNibName:@"SSConnectViewController" bundle:nil];
     
     self.window.rootViewController = ssConnect;
+
     [self.window makeKeyAndVisible];
     return YES;
 }
