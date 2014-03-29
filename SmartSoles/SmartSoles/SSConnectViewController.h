@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "BLE.h"
 
-@interface SSConnectViewController : UIViewController<BLEDelegate>
+@interface SSConnectViewController : UIViewController<BLEDelegate> {
+    IBOutlet UIButton *connectButton;
+    IBOutlet UIActivityIndicatorView *connectIndicator;
+    IBOutlet UISwitch *ledSwitch;
+    IBOutlet UILabel *analogInLabel;
+    IBOutlet UIButton *readButton;
+}
 
-@property (strong, nonatomic) IBOutlet UIButton *connectButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *connectIndicator;
 @property (strong, nonatomic) BLE *ble;
 
 @end
