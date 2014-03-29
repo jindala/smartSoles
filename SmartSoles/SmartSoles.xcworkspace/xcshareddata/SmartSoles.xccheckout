@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF54B73C-6BE5-439E-8144-2860DC0CDB00</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SmartSoles</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</key>
+		<string>https://github.com/jindala/smartSoles.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SmartSoles/SmartSoles.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jindala/smartSoles.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>smartSoles</string>
+		</dict>
+	</array>
+</dict>
+</plist>

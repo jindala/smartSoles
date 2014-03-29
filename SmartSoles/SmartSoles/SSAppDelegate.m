@@ -7,6 +7,7 @@
 //
 
 #import "SSAppDelegate.h"
+#import "SSHistoryViewController.h"
 
 @implementation SSAppDelegate
 
@@ -14,7 +15,10 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor grayColor];
+    
+    SSHistoryViewController *historyVC = [[SSHistoryViewController alloc] initWithNibName:@"SSHistoryViewController" bundle:nil];
+    self.window.rootViewController = historyVC;
     [self.window makeKeyAndVisible];
     return YES;
 }

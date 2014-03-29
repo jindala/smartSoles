@@ -1,0 +1,10 @@
+PODS:
+  - BEMSimpleLineGraph (2.0.1)
+
+DEPENDENCIES:
+  - BEMSimpleLineGraph
+
+SPEC CHECKSUMS:
+  BEMSimpleLineGraph: ec3f7ea00f88d2318c34bad1cea6234acff39bb3
+
+COCOAPODS: 0.29.0

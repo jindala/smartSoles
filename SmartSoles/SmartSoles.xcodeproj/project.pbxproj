@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A55885CF4F45DABBB9E2BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D368D77C93A7427A852626F5 /* libPods.a */; };
+		840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */; };
+		840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */; };
 		848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340318E699AD00CA1DD1 /* Foundation.framework */; };
 		848C340618E699AD00CA1DD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340518E699AD00CA1DD1 /* CoreGraphics.framework */; };
 		848C340818E699AD00CA1DD1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340718E699AD00CA1DD1 /* UIKit.framework */; };
@@ -32,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHistoryViewController.h; sourceTree = "<group>"; };
+		840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHistoryViewController.m; sourceTree = "<group>"; };
+		840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHistoryViewController.xib; sourceTree = "<group>"; };
 		848C340018E699AD00CA1DD1 /* SmartSoles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartSoles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848C340318E699AD00CA1DD1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		848C340518E699AD00CA1DD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +54,8 @@
 		848C342418E699AD00CA1DD1 /* SmartSolesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartSolesTests-Info.plist"; sourceTree = "<group>"; };
 		848C342618E699AD00CA1DD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		848C342818E699AD00CA1DD1 /* SmartSolesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartSolesTests.m; sourceTree = "<group>"; };
+		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,7 @@
 				848C340618E699AD00CA1DD1 /* CoreGraphics.framework in Frameworks */,
 				848C340818E699AD00CA1DD1 /* UIKit.framework in Frameworks */,
 				848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */,
+				13A55885CF4F45DABBB9E2BC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +83,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840C790818E6AFA200B4FFD1 /* HistoryScreen */ = {
+			isa = PBXGroup;
+			children = (
+				840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */,
+				840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */,
+				840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */,
+			);
+			name = HistoryScreen;
+			sourceTree = "<group>";
+		};
 		848C33F718E699AD00CA1DD1 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +100,7 @@
 				848C342218E699AD00CA1DD1 /* SmartSolesTests */,
 				848C340218E699AD00CA1DD1 /* Frameworks */,
 				848C340118E699AD00CA1DD1 /* Products */,
+				EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +120,7 @@
 				848C340518E699AD00CA1DD1 /* CoreGraphics.framework */,
 				848C340718E699AD00CA1DD1 /* UIKit.framework */,
 				848C341C18E699AD00CA1DD1 /* XCTest.framework */,
+				D368D77C93A7427A852626F5 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,6 +128,7 @@
 		848C340918E699AD00CA1DD1 /* SmartSoles */ = {
 			isa = PBXGroup;
 			children = (
+				840C790818E6AFA200B4FFD1 /* HistoryScreen */,
 				848C341218E699AD00CA1DD1 /* SSAppDelegate.h */,
 				848C341318E699AD00CA1DD1 /* SSAppDelegate.m */,
 				848C341518E699AD00CA1DD1 /* Images.xcassets */,
@@ -151,9 +173,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 848C342C18E699AD00CA1DD1 /* Build configuration list for PBXNativeTarget "SmartSoles" */;
 			buildPhases = (
+				F79B33B85ED942EF8D49077D /* Check Pods Manifest.lock */,
 				848C33FC18E699AD00CA1DD1 /* Sources */,
 				848C33FD18E699AD00CA1DD1 /* Frameworks */,
 				848C33FE18E699AD00CA1DD1 /* Resources */,
+				46D7F76B1B6344618D23E844 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
+				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,12 +260,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		46D7F76B1B6344618D23E844 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F79B33B85ED942EF8D49077D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		848C33FC18E699AD00CA1DD1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				848C341418E699AD00CA1DD1 /* SSAppDelegate.m in Sources */,
+				840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */,
 				848C341018E699AD00CA1DD1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +414,7 @@
 		};
 		848C342D18E699AD00CA1DD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -368,6 +428,7 @@
 		};
 		848C342E18E699AD00CA1DD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -438,6 +499,7 @@
 				848C342E18E699AD00CA1DD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		848C342F18E699AD00CA1DD1 /* Build configuration list for PBXNativeTarget "SmartSolesTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +508,7 @@
 				848C343118E699AD00CA1DD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
