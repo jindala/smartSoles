@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JASidePanels.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>BA8AC4A2B11F4B0295439E92</key>
+		<key>11A410CF1AE645BCA5E5085E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC8DE2EE710A4832B6310931</key>
+		<key>12BEAE4BFC414267A236BACD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29FA955CC7574ABD963600D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

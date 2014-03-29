@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CC8DE2EE710A4832B6310931"
+               BlueprintIdentifier = "29FA955CC7574ABD963600D5"
                BuildableName = "libPods-BEMSimpleLineGraph.a"
                BlueprintName = "Pods-BEMSimpleLineGraph"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -45,6 +45,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)loginWithFacebook:(id)sender {
+}
+
+
 #pragma mark - handle graph library delegate
 
 -(NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
