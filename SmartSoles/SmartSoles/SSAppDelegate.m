@@ -9,12 +9,16 @@
 #import "SSAppDelegate.h"
 #import "SSHistoryViewController.h"
 #import "SSConnectViewController.h"
+#import "SSSession.h"
+#import "SSAppDelegate+MOC.h"
 
 @implementation SSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [SSSession sharedSession].context = [self createMainQueueManagedObjectContext];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor grayColor];
     
