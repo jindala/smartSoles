@@ -8,6 +8,7 @@
 
 #import "SSAppDelegate.h"
 #import "SSHistoryViewController.h"
+#import "SSConnectViewController.h"
 
 @implementation SSAppDelegate
 
@@ -18,7 +19,9 @@
     self.window.backgroundColor = [UIColor grayColor];
     
     SSHistoryViewController *historyVC = [[SSHistoryViewController alloc] initWithNibName:@"SSHistoryViewController" bundle:nil];
-    self.window.rootViewController = historyVC;
+    
+    SSConnectViewController *ssConnect = [[SSConnectViewController alloc] initWithNibName:@"SSConnectViewController" bundle:nil];
+    self.window.rootViewController = ssConnect;
     [self.window makeKeyAndVisible];
     return YES;
 }

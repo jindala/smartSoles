@@ -24,6 +24,8 @@
 		848C342918E699AD00CA1DD1 /* SmartSolesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 848C342818E699AD00CA1DD1 /* SmartSolesTests.m */; };
 		84EE389D18E746320094C355 /* BLE.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE389B18E746320094C355 /* BLE.m */; };
 		84EE389F18E74CC60094C355 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EE389E18E74CC60094C355 /* FacebookSDK.framework */; };
+		84EE38A418E750CE0094C355 /* SSConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38A218E750CE0094C355 /* SSConnectViewController.m */; };
+		84EE38A518E750CE0094C355 /* SSConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE38A318E750CE0094C355 /* SSConnectViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		84EE389B18E746320094C355 /* BLE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		84EE389C18E746320094C355 /* BLEDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		84EE389E18E74CC60094C355 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		84EE38A118E750CE0094C355 /* SSConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectViewController.h; sourceTree = "<group>"; };
+		84EE38A218E750CE0094C355 /* SSConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSConnectViewController.m; sourceTree = "<group>"; };
+		84EE38A318E750CE0094C355 /* SSConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSConnectViewController.xib; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +142,7 @@
 		848C340918E699AD00CA1DD1 /* SmartSoles */ = {
 			isa = PBXGroup;
 			children = (
+				84EE38A018E750AA0094C355 /* ConnectScreen */,
 				840C790818E6AFA200B4FFD1 /* HistoryScreen */,
 				848C341218E699AD00CA1DD1 /* SSAppDelegate.h */,
 				848C341318E699AD00CA1DD1 /* SSAppDelegate.m */,
@@ -183,6 +189,16 @@
 				84EE389C18E746320094C355 /* BLEDefines.h */,
 			);
 			path = BLE;
+			sourceTree = "<group>";
+		};
+		84EE38A018E750AA0094C355 /* ConnectScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84EE38A118E750CE0094C355 /* SSConnectViewController.h */,
+				84EE38A218E750CE0094C355 /* SSConnectViewController.m */,
+				84EE38A318E750CE0094C355 /* SSConnectViewController.xib */,
+			);
+			name = ConnectScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +282,7 @@
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
+				84EE38A518E750CE0094C355 /* SSConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +336,7 @@
 			files = (
 				848C341418E699AD00CA1DD1 /* SSAppDelegate.m in Sources */,
 				840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */,
+				84EE38A418E750CE0094C355 /* SSConnectViewController.m in Sources */,
 				848C341018E699AD00CA1DD1 /* main.m in Sources */,
 				84EE389D18E746320094C355 /* BLE.m in Sources */,
 			);
