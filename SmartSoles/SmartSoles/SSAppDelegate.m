@@ -7,7 +7,7 @@
 //
 
 #import "SSAppDelegate.h"
-#import "SSHistoryViewController.h"
+#import "SSConnectViewController.h"
 
 @implementation SSAppDelegate
 
@@ -17,7 +17,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor grayColor];
     
-    SSHistoryViewController *historyVC = [[SSHistoryViewController alloc] initWithNibName:@"SSHistoryViewController" bundle:nil];
+    SSConnectViewController *historyVC = [[SSConnectViewController alloc] initWithNibName:@"SSConnectViewController" bundle:nil];
     self.window.rootViewController = historyVC;
     [self.window makeKeyAndVisible];
     return YES;

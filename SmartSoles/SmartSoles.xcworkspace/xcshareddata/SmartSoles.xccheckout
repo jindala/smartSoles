@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>CF54B73C-6BE5-439E-8144-2860DC0CDB00</string>
+	<string>AA93E738-7F14-4833-9EDC-67301368D935</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SmartSoles</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</key>
-		<string>https://github.com/jindala/smartSoles.git</string>
+		<key>826CDBA2-1D29-4D51-9909-9C6969712E2F</key>
+		<string>https://github.com/jindala/smartSoles</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SmartSoles/SmartSoles.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</key>
+		<key>826CDBA2-1D29-4D51-9909-9C6969712E2F</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/jindala/smartSoles.git</string>
+	<string>https://github.com/jindala/smartSoles</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</string>
+	<string>826CDBA2-1D29-4D51-9909-9C6969712E2F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B73C8C6A-CF97-43EE-A5A2-5DFFE4D077AE</string>
+			<string>826CDBA2-1D29-4D51-9909-9C6969712E2F</string>
 			<key>IDESourceControlWCCName</key>
 			<string>smartSoles</string>
 		</dict>
