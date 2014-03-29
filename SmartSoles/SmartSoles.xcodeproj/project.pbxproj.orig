@@ -56,14 +56,17 @@
 		848C342418E699AD00CA1DD1 /* SmartSolesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartSolesTests-Info.plist"; sourceTree = "<group>"; };
 		848C342618E699AD00CA1DD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		848C342818E699AD00CA1DD1 /* SmartSolesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmartSolesTests.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+=======
 		8DB04E8118E6A7AC00B4B718 /* BLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLE.h; sourceTree = "<group>"; };
 		8DB04E8218E6A7AC00B4B718 /* BLE.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BLE.m; sourceTree = "<group>"; };
 		8DB04E8318E6A7AC00B4B718 /* BLEDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLEDefines.h; sourceTree = "<group>"; };
 		8DB04E8418E6A82D00B4B718 /* SSConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSConnectViewController.h; sourceTree = "<group>"; };
 		8DB04E8518E6A82D00B4B718 /* SSConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSConnectViewController.m; sourceTree = "<group>"; };
 		8DB04E8718E6A90500B4B718 /* SmartSoles.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SmartSoles.storyboard; sourceTree = "<group>"; };
+>>>>>>> ef3dfe0157ea808b0b0ba0cfa29aab7c7291864a
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,8 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
+<<<<<<< HEAD
 				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
+=======
 				8DB04E8818E6A90500B4B718 /* SmartSoles.storyboard in Resources */,
+>>>>>>> ef3dfe0157ea808b0b0ba0cfa29aab7c7291864a
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
