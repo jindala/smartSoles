@@ -18,9 +18,12 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor grayColor];
     
+    [FBLoginView class];
+    
     SSHistoryViewController *historyVC = [[SSHistoryViewController alloc] initWithNibName:@"SSHistoryViewController" bundle:nil];
     
     SSConnectViewController *ssConnect = [[SSConnectViewController alloc] initWithNibName:@"SSConnectViewController" bundle:nil];
+    
     self.window.rootViewController = ssConnect;
     [self.window makeKeyAndVisible];
     return YES;
