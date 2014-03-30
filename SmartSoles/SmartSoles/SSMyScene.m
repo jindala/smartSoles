@@ -28,27 +28,30 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
-        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"welcomeScreen1"];
+        sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        sn.name = @"BACKGROUND";
+        sn.zPosition = -1;
+        [self addChild:sn];
         
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
-        
         self.player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.player.size];
         self.player.physicsBody.dynamic = YES;
         self.player.physicsBody.categoryBitMask = playerCategory;
         self.player.physicsBody.contactTestBitMask = monsterCategory;
         self.player.physicsBody.collisionBitMask = 0;
         self.player.physicsBody.usesPreciseCollisionDetection = YES;
-        
+        self.player.zPosition = 1;
         [self addChild:self.player];
         
         SKShapeNode *yourline = [SKShapeNode node];
-        
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -20);
         CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -20);
         yourline.path = pathToDraw;
         [yourline setStrokeColor:[UIColor grayColor]];
+        yourline.zPosition = 0;
         [self addChild:yourline];
         
         self.physicsWorld.gravity = CGVectorMake(0,0);
@@ -168,7 +171,7 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     int arcCenterX = self.player.frame.origin.x;
     CGPoint initialPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
     CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y + 50);
-    CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
+    CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.frame.size.height/2);
     
     NSMutableArray *jumpPoints = [NSMutableArray arrayWithObjects:[NSValue valueWithCGPoint:initialPoint], [NSValue valueWithCGPoint:firstPoint], [NSValue valueWithCGPoint:secondPoint], nil];
     CGMutablePathRef path = CGPathCreateMutable();

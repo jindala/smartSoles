@@ -31,11 +31,6 @@
 {
     [super viewWillLayoutSubviews];
     
-    /*UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"welcomeScreen1"]];
-    
-    [self.view addSubview:imageView ];
-    [self.view sendSubviewToBack:imageView ];*/
-    
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
