@@ -10,4 +10,6 @@
 
 @interface SSMyScene : SKScene
 
+@property (nonatomic, strong) NSMutableDictionary *latestSoleData;
+
 @end

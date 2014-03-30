@@ -10,7 +10,7 @@
 
 @interface SSDataFormulationAndSave : NSObject
 
-+(void)formulateAndSaveSoleData:(NSNumber *)incomingValue;
++(NSDictionary *)formulateAndSaveSoleData:(NSNumber *)incomingValue;
 
 +(NSArray *)retrieveAndFormulateActivityData;
 

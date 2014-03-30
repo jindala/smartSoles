@@ -12,7 +12,7 @@
 
 @implementation SSDataFormulationAndSave
 
-+(void)formulateAndSaveSoleData:(NSNumber *)incomingValue {
++(NSDictionary *)formulateAndSaveSoleData:(NSNumber *)incomingValue {
     
     NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
@@ -22,6 +22,8 @@
     [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"footPos"];
     
     [Activity saveNewActivityWithDictionary:dictionary inManagedDataObject:[SSSession sharedSession].context];
+    
+    return dictionary;
 }
 
 +(NSArray *)retrieveAndFormulateActivityData {
