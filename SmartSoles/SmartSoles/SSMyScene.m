@@ -286,11 +286,11 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     
     if(1023-[resistance intValue]<10) {
         NSLog(@"I am pressed %d ", [resistance intValue]);
-        [self.lastActionArray addObject:[NSNumber numberWithInt:0]];
+        [self.lastActionArray addObject:[NSNumber numberWithInt:1]];
     }
     else {
          NSLog(@"I am in air %d ", [resistance intValue]);
-        [self.lastActionArray addObject:[NSNumber numberWithInt:1]];
+        [self.lastActionArray addObject:[NSNumber numberWithInt:0]];
         
     }
     if(self.lastActionArray && [self.lastActionArray count]>2) {
