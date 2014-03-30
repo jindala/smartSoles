@@ -16,5 +16,6 @@
     IBOutlet UILabel *analogInLabel;
     IBOutlet UIButton *readButton;
 }
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @end

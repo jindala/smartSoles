@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BEMSimpleLineGraphView.h"
-# import <FacebookSDK/FacebookSDK.h>
+
 
 @interface SSHistoryViewController : UIViewController <BEMSimpleLineGraphDelegate>
 

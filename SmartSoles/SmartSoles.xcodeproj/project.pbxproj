@@ -43,7 +43,23 @@
 		84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392718E7D59C0094C355 /* sprites.atlas */; };
 		84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392D18E7E24A0094C355 /* welcomeScreen1.png */; };
 		84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392F18E7E5150094C355 /* splashScreenBackground.png */; };
+		84EE393518E876500094C355 /* SSHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE393318E876500094C355 /* SSHomeViewController.m */; };
+		84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393418E876500094C355 /* SSHomeViewController.xib */; };
+		84EE393818E878FB0094C355 /* avatars_alex.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393718E878FB0094C355 /* avatars_alex.png */; };
+		84EE393B18E879100094C355 /* avatars_brit copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393918E879100094C355 /* avatars_brit copy.png */; };
+		84EE393C18E879100094C355 /* avatars_Matt copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393A18E879100094C355 /* avatars_Matt copy.png */; };
+		84EE393E18E879260094C355 /* buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393D18E879260094C355 /* buttons.png */; };
+		84EE394018E8793D0094C355 /* friendsScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE393F18E8793D0094C355 /* friendsScreen1.png */; };
+		84EE394218E879690094C355 /* splashScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394118E879690094C355 /* splashScreen1.png */; };
+		84EE394418E8797D0094C355 /* welcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394318E8797D0094C355 /* welcomeScreen.png */; };
+		84EE394918E880CC0094C355 /* SSFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE394718E880CC0094C355 /* SSFriendsViewController.m */; };
+		84EE394A18E880CC0094C355 /* SSFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394818E880CC0094C355 /* SSFriendsViewController.xib */; };
+		84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394B18E8A5000094C355 /* hurdles@2x.png */; };
+		84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394D18E8A50B0094C355 /* ninja@2x.png */; };
+		84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394F18E8AF070094C355 /* BGgame@2x.png */; };
+		84EE395218E8AF410094C355 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395118E8AF410094C355 /* grass.png */; };
 		8D077AC818E7F53F005F4740 /* SSGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077AC718E7F53F005F4740 /* SSGameOverScene.m */; };
+		8D077ACB18E88DA3005F4740 /* SSScoreLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,8 +125,27 @@
 		84EE392718E7D59C0094C355 /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 		84EE392D18E7E24A0094C355 /* welcomeScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomeScreen1.png; sourceTree = "<group>"; };
 		84EE392F18E7E5150094C355 /* splashScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreenBackground.png; sourceTree = "<group>"; };
+		84EE393218E876500094C355 /* SSHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHomeViewController.h; sourceTree = "<group>"; };
+		84EE393318E876500094C355 /* SSHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHomeViewController.m; sourceTree = "<group>"; };
+		84EE393418E876500094C355 /* SSHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHomeViewController.xib; sourceTree = "<group>"; };
+		84EE393718E878FB0094C355 /* avatars_alex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatars_alex.png; sourceTree = "<group>"; };
+		84EE393918E879100094C355 /* avatars_brit copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatars_brit copy.png"; sourceTree = "<group>"; };
+		84EE393A18E879100094C355 /* avatars_Matt copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatars_Matt copy.png"; sourceTree = "<group>"; };
+		84EE393D18E879260094C355 /* buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttons.png; sourceTree = "<group>"; };
+		84EE393F18E8793D0094C355 /* friendsScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friendsScreen1.png; sourceTree = "<group>"; };
+		84EE394118E879690094C355 /* splashScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreen1.png; sourceTree = "<group>"; };
+		84EE394318E8797D0094C355 /* welcomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomeScreen.png; sourceTree = "<group>"; };
+		84EE394618E880CC0094C355 /* SSFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFriendsViewController.h; sourceTree = "<group>"; };
+		84EE394718E880CC0094C355 /* SSFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFriendsViewController.m; sourceTree = "<group>"; };
+		84EE394818E880CC0094C355 /* SSFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSFriendsViewController.xib; sourceTree = "<group>"; };
+		84EE394B18E8A5000094C355 /* hurdles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdles@2x.png"; sourceTree = "<group>"; };
+		84EE394D18E8A50B0094C355 /* ninja@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja@2x.png"; sourceTree = "<group>"; };
+		84EE394F18E8AF070094C355 /* BGgame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGgame@2x.png"; sourceTree = "<group>"; };
+		84EE395118E8AF410094C355 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		8D077AC618E7F53F005F4740 /* SSGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSGameOverScene.h; sourceTree = "<group>"; };
 		8D077AC718E7F53F005F4740 /* SSGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSGameOverScene.m; sourceTree = "<group>"; };
+		8D077AC918E88DA3005F4740 /* SSScoreLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSScoreLabel.h; sourceTree = "<group>"; };
+		8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSScoreLabel.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +225,8 @@
 		848C340918E699AD00CA1DD1 /* SmartSoles */ = {
 			isa = PBXGroup;
 			children = (
+				84EE394518E880AB0094C355 /* FriendsScreen */,
+				84EE393118E876280094C355 /* HomeScreen */,
 				8D077AC518E7F530005F4740 /* GameOverScene */,
 				84EE391A18E7D04A0094C355 /* GameScreen */,
 				84EE38B218E77B300094C355 /* Utility */,
@@ -209,6 +246,17 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84EE395118E8AF410094C355 /* grass.png */,
+				84EE394F18E8AF070094C355 /* BGgame@2x.png */,
+				84EE393F18E8793D0094C355 /* friendsScreen1.png */,
+				84EE394318E8797D0094C355 /* welcomeScreen.png */,
+				84EE394B18E8A5000094C355 /* hurdles@2x.png */,
+				84EE394118E879690094C355 /* splashScreen1.png */,
+				84EE393D18E879260094C355 /* buttons.png */,
+				84EE394D18E8A50B0094C355 /* ninja@2x.png */,
+				84EE393918E879100094C355 /* avatars_brit copy.png */,
+				84EE393A18E879100094C355 /* avatars_Matt copy.png */,
+				84EE393718E878FB0094C355 /* avatars_alex.png */,
 				84EE392F18E7E5150094C355 /* splashScreenBackground.png */,
 				84EE392D18E7E24A0094C355 /* welcomeScreen1.png */,
 				84EE392318E7D59C0094C355 /* SpriteKitSimpleGameResources */,
@@ -293,6 +341,8 @@
 				84EE391D18E7D3040094C355 /* SSGameViewController.xib */,
 				84EE392018E7D3960094C355 /* SSMyScene.h */,
 				84EE392118E7D3960094C355 /* SSMyScene.m */,
+				8D077AC918E88DA3005F4740 /* SSScoreLabel.h */,
+				8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */,
 			);
 			name = GameScreen;
 			sourceTree = "<group>";
@@ -313,6 +363,26 @@
 				84EE392618E7D59C0094C355 /* pew-pew-lei.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		84EE393118E876280094C355 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84EE393218E876500094C355 /* SSHomeViewController.h */,
+				84EE393318E876500094C355 /* SSHomeViewController.m */,
+				84EE393418E876500094C355 /* SSHomeViewController.xib */,
+			);
+			name = HomeScreen;
+			sourceTree = "<group>";
+		};
+		84EE394518E880AB0094C355 /* FriendsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84EE394618E880CC0094C355 /* SSFriendsViewController.h */,
+				84EE394718E880CC0094C355 /* SSFriendsViewController.m */,
+				84EE394818E880CC0094C355 /* SSFriendsViewController.xib */,
+			);
+			name = FriendsScreen;
 			sourceTree = "<group>";
 		};
 		8D077AC518E7F530005F4740 /* GameOverScene */ = {
@@ -406,14 +476,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */,
+				84EE394018E8793D0094C355 /* friendsScreen1.png in Resources */,
+				84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */,
+				84EE394418E8797D0094C355 /* welcomeScreen.png in Resources */,
 				84EE392918E7D59C0094C355 /* pew-pew-lei.caf in Resources */,
+				84EE393E18E879260094C355 /* buttons.png in Resources */,
 				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
+				84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */,
 				84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */,
+				84EE394218E879690094C355 /* splashScreen1.png in Resources */,
+				84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */,
+				84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */,
+				84EE395218E8AF410094C355 /* grass.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */,
 				84EE392818E7D59C0094C355 /* background-music-aac.caf in Resources */,
+				84EE393C18E879100094C355 /* avatars_Matt copy.png in Resources */,
+				84EE394A18E880CC0094C355 /* SSFriendsViewController.xib in Resources */,
 				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
+				84EE393818E878FB0094C355 /* avatars_alex.png in Resources */,
+				84EE393B18E879100094C355 /* avatars_brit copy.png in Resources */,
 				84EE38A518E750CE0094C355 /* SSConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EE393518E876500094C355 /* SSHomeViewController.m in Sources */,
 				84EE391E18E7D3040094C355 /* SSGameViewController.m in Sources */,
 				84EE392218E7D3960094C355 /* SSMyScene.m in Sources */,
 				84EE38B518E77B640094C355 /* SSSession.m in Sources */,
@@ -477,8 +561,10 @@
 				84EE38B818E7804B0094C355 /* Activity.m in Sources */,
 				848C341418E699AD00CA1DD1 /* SSAppDelegate.m in Sources */,
 				84EE38C418E78CAA0094C355 /* SSAppDelegate+MOC.m in Sources */,
+				8D077ACB18E88DA3005F4740 /* SSScoreLabel.m in Sources */,
 				840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */,
 				84EE38C118E784DA0094C355 /* User+Utility.m in Sources */,
+				84EE394918E880CC0094C355 /* SSFriendsViewController.m in Sources */,
 				84EE38A418E750CE0094C355 /* SSConnectViewController.m in Sources */,
 				84EE38AA18E75C130094C355 /* BLE.m in Sources */,
 				848C341018E699AD00CA1DD1 /* main.m in Sources */,

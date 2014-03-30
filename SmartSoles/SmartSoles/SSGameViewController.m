@@ -40,6 +40,11 @@
     self.backgroundMusicPlayer.volume = 0.5; // make volume lower so that wooshes can be heard.
     [self.backgroundMusicPlayer prepareToPlay];
     [self.backgroundMusicPlayer play];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;
@@ -55,7 +60,7 @@
         [skView presentScene:scene];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float).10 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:(float).1 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
 }
 
 - (BOOL)shouldAutorotate
@@ -87,7 +92,7 @@
 }
 
 -(void)pullData {
-    UInt8 buf[3] = {0xA9, 0x01, 0x00};
+    UInt8 buf[3] = {0xA7, 0x01, 0x00};
     
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [[SSSession sharedSession].ble write:data];
@@ -115,7 +120,7 @@
             
             value = data[i+2] | data[i+1] << 8;
             //analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
-            NSDictionary *formulatedDict = [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            NSDictionary *formulatedDict = [SSDataFormulationAndSave formulateSoleData:[NSNumber numberWithInteger:value]];
             SKView * skView = (SKView *)self.view;
             if(skView.scene) {
                 ((SSMyScene *)skView.scene).latestSoleData = [formulatedDict mutableCopy];

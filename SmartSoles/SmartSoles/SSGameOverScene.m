@@ -24,6 +24,7 @@
     } else {
         message = @"You lose :[";
     }
+    message = @"Calories Burnt: 20";
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     label.text = message;

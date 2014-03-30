@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (strong, nonatomic) BLE *ble;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UINavigationController *navController;
 
 + (SSSession*)sharedSession;
 + (id)sharedInstance;

@@ -8,6 +8,7 @@
 
 #import "SSMyScene.h"
 #import "SSGameOverScene.h"
+#import "SSScoreLabel.h"
 #import <math.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -16,7 +17,11 @@
 @property (nonatomic) SKSpriteNode * box;
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic) SKSpriteNode *calorieCounter;
+@property (nonatomic) float totalCaloriesBurnt;
+@property (nonatomic) NSMutableArray *lastActionArray;
 @property (nonatomic) int hurdles;
+@property (nonatomic) SSScoreLabel *scoreLabel;
 @end
 
 
@@ -32,18 +37,32 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [self updatePlayerPosition];
 }
 
+-(void)setupHUD {
+    // position the scoreLabel in the frame
+    _scoreLabel = [[SSScoreLabel alloc] initScoreLabel];
+    _scoreLabel.position = CGPointMake(self.frame.size.width/2 - _scoreLabel.frame.size.width/2,
+                                      self.frame.size.height - _scoreLabel.frame.size.height - 55);
+    _scoreLabel.name = @"scoreLabel";
+    
+    [self addChild:_scoreLabel];
+}
+
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
+        self.totalCaloriesBurnt = 0;
+        self.lastActionArray = [[NSMutableArray alloc] init];
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
-        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"welcomeScreen1"];
+        // Background
+        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"BGgame"];
         sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         sn.name = @"BACKGROUND";
         sn.zPosition = -1;
         [self addChild:sn];
         
-        self.player = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
+        // Player
+        self.player = [SKSpriteNode spriteNodeWithImageNamed:@"ninja"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
         self.player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.player.size];
         self.player.physicsBody.dynamic = YES;
@@ -66,10 +85,11 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.box.zPosition = 1;
         [self addChild:self.box];
         
+        // Line
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -20);
-        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -20);
+        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -40);
+        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -40);
         yourline.path = pathToDraw;
         [yourline setStrokeColor:[UIColor grayColor]];
         yourline.zPosition = 0;
@@ -91,10 +111,42 @@ static const uint32_t boxCategory            =  0x1 << 1;
     return self;
 }
 
+-(void)addGrass {
+    // Create sprite
+    SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
+    int actualY = self.frame.size.height/2;
+    
+    // Create the monster slightly off-screen along the right edge,
+    // and along a random position along the Y axis as calculated above
+    grass.position = CGPointMake(self.frame.size.width + grass.size.width/2, actualY);
+    
+    // Collision detection
+    /*monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+    monster.physicsBody.dynamic = YES;
+    monster.physicsBody.categoryBitMask = monsterCategory;
+    monster.physicsBody.contactTestBitMask = playerCategory;
+    monster.physicsBody.collisionBitMask = 0;*/
+    
+    
+    [self addChild:grass];
+    
+    // Determine speed of the monster
+    int minDuration = 6.0;
+    int maxDuration = 10.0;
+    int rangeDuration = maxDuration - minDuration;
+    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    
+    // Create the actions
+    SKAction * actionMove = [SKAction moveTo:CGPointMake(-grass.size.width/2, actualY) duration:actualDuration];
+    SKAction * actionMoveDone = [SKAction removeFromParent];
+    
+    [grass runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+}
+
 - (void)addMonster {
     
     // Create sprite
-    SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"monster"];
+    SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdles"];
     int actualY = self.frame.size.height/2;
     
     // Create the monster slightly off-screen along the right edge,
@@ -121,10 +173,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-monster.size.width/2, actualY) duration:actualDuration];
-    SKAction * actionMoveDone = [SKAction runBlock:^{
-        [SKAction removeFromParent];
-        _hurdles++;
-    }];
+    SKAction * actionMoveDone = [SKAction removeFromParent];
+    
     SKAction *winAction = [SKAction runBlock:^{
         if([self hurdles] > 30) {
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
@@ -133,9 +183,10 @@ static const uint32_t boxCategory            =  0x1 << 1;
             [self.view presentScene:gameOverScene transition:reveal];
         }
     }];
+    
 
     
-    [monster runAction:[SKAction sequence:@[actionMove, winAction, actionMoveDone]]];
+    [monster runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
     
 }
 
@@ -163,7 +214,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 - (void)projectile:(SKSpriteNode *)player didCollideWithMonster:(SKSpriteNode *)monster {
     NSLog(@"Did not hurdle");
-    SKAction *loseAction = [SKAction runBlock:^{
+    /*SKAction *loseAction = [SKAction runBlock:^{
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
                                                                        won:NO];
@@ -179,7 +230,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
     
-    [player runAction:loseAction];
+    [player runAction:loseAction];*/
 }
 
 - (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
@@ -224,23 +275,32 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
 }
 
-
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    CGMutablePathRef fallPath = [self createFallPath];
+    
+    SKAction *followTrack = [SKAction followPath:fallPath asOffset:NO orientToPath:YES duration:0.5];
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 2.0);
+    CGContextSetFillColorWithColor(context, [[UIColor redColor] CGColor]);
+    CGContextSetStrokeColorWithColor(context, [[UIColor blueColor] CGColor]);
+    
+    // Draw the points
+    CGContextAddPath(context, fallPath);
+    CGContextStrokePath(context);
     
     [self.player runAction:followTrack];
-    
     // JUMP SOUND
     [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
-
     
+    [_scoreLabel addScore:0.15];
 }
 
 -(CGMutablePathRef) createJumpPath {
     int arcCenterX = self.player.frame.origin.x;
     CGPoint initialPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
-    CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y + 50);
+    CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y + 150);
     CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.frame.size.height/2);
     
     NSMutableArray *jumpPoints = [NSMutableArray arrayWithObjects:[NSValue valueWithCGPoint:initialPoint], [NSValue valueWithCGPoint:firstPoint], [NSValue valueWithCGPoint:secondPoint], nil];
@@ -257,18 +317,66 @@ static const uint32_t boxCategory            =  0x1 << 1;
     return path;
 }
 
+-(CGMutablePathRef) createFallPath {
+    CGFloat playerCenterX = self.player.frame.origin.x + self.player.frame.size.width / 2;
+    CGFloat playerCenterY = self.player.frame.origin.y + self.player.frame.size.height / 2;
+    
+    CGPoint initialPoint = CGPointMake(playerCenterX, playerCenterY + 20);
+    CGPoint firstPoint = CGPointMake(playerCenterX + 20, playerCenterY);
+    
+    NSMutableArray *jumpPoints = [NSMutableArray arrayWithObjects:[NSValue valueWithCGPoint:initialPoint], [NSValue valueWithCGPoint:firstPoint], nil];
+    CGMutablePathRef path = CGPathCreateMutable();
+    if (jumpPoints && jumpPoints.count > 0) {
+        CGPoint p = [(NSValue *)[jumpPoints objectAtIndex:0] CGPointValue];
+        CGPathMoveToPoint(path, nil, p.x, p.y);
+        for (int i = 1; i < jumpPoints.count; i++) {
+            p = [(NSValue *)[jumpPoints objectAtIndex:i] CGPointValue];
+            CGPathAddLineToPoint(path, nil, p.x, p.y);
+        }
+    }
+    
+    return path;
+}
+
+
+-(void)didMoveToView:(SKView *)view {
+    [self setupHUD];
+}
+
 -(void)updatePlayerPosition {
     NSNumber *resistance = _latestSoleData[@"resistance"];
     //NSNumber *timeInMilis = _latestSoleData[@"timeInMilis"];
     
     if(1023-[resistance intValue]<10) {
         NSLog(@"I am pressed %d ", [resistance intValue]);
-        self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        [self.lastActionArray addObject:[NSNumber numberWithInt:0]];
     }
     else {
          NSLog(@"I am in air %d ", [resistance intValue]);
-        SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
-        [self.player runAction:followTrack];
+        [self.lastActionArray addObject:[NSNumber numberWithInt:1]];
+        
+    }
+    if(self.lastActionArray && [self.lastActionArray count]>2) {
+        int previousAction = [[self.lastActionArray objectAtIndex:[self.lastActionArray count]-1] intValue];
+        int secondLastAction = [[self.lastActionArray objectAtIndex:[self.lastActionArray count]-2] intValue];
+        
+        if(previousAction == 1 && secondLastAction == 1) {
+            NSLog(@"I am Jumping");
+            SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+            [self.player runAction:followTrack];
+            self.totalCaloriesBurnt =+.15;
+            [_scoreLabel addScore:0.15];
+        }
+        else if(previousAction == 0 && secondLastAction == 0) {
+            NSLog(@"I am standing");
+            self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        }
+        else {
+            NSLog(@"I am running/walking");
+            self.totalCaloriesBurnt =+.05;
+            [_scoreLabel addScore:0.05];
+        }
+        
     }
 }
 

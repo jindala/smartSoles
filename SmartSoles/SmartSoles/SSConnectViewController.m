@@ -10,6 +10,7 @@
 #import "SSDataFormulationAndSave.h"
 #import "SSSession.h"
 #import "SSGameViewController.h"
+#import "SSHomeViewController.h"
 
 @interface SSConnectViewController ()
 
@@ -80,7 +81,7 @@
             
             value = data[i+2] | data[i+1] << 8;
             analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
-            [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            //[SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
         }
     }
 }
@@ -92,12 +93,12 @@
         [self pullData];
         [NSThread sleepForTimeInterval:0.5];
     }*/
-    [SSDataFormulationAndSave retrieveAndFormulateActivityData];
-    [self pullData];
+    //[SSDataFormulationAndSave retrieveAndFormulateActivityData];
+    //[self pullData];
 }
 
 -(void)pullData {
-    UInt8 buf[3] = {0xA0, 0x01, 0x00};
+    UInt8 buf[3] = {0xA7, 0x01, 0x00};
     
     buf[1] = 0x01;
     
@@ -143,6 +144,7 @@
     {
         [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
         [connectIndicator stopAnimating];
+        [self goToNextScreen];
     }
 }
 // When disconnected, this will be called
@@ -158,13 +160,19 @@
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [[SSSession sharedSession].ble write:data];
     
+    [SSSession sharedSession].name = self.nameTextField.text;
+    
     [self goToNextScreen];
 }
 
 -(void)goToNextScreen {
     //Go to next screen
-    SSGameViewController *gameController = [[SSGameViewController alloc] initWithNibName:@"SSGameViewController" bundle:nil];
-    [self presentViewController:gameController animated:YES completion:nil];
+    //SSGameViewController *gameController = [[SSGameViewController alloc] initWithNibName:@"SSGameViewController" bundle:nil];
+    
+    SSHomeViewController *homeVC = [[SSHomeViewController alloc] initWithNibName:@"SSHomeViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [SSSession sharedSession].navController = navController;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)bleDidDisconnect {
