@@ -54,6 +54,10 @@
 		84EE394418E8797D0094C355 /* welcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394318E8797D0094C355 /* welcomeScreen.png */; };
 		84EE394918E880CC0094C355 /* SSFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE394718E880CC0094C355 /* SSFriendsViewController.m */; };
 		84EE394A18E880CC0094C355 /* SSFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394818E880CC0094C355 /* SSFriendsViewController.xib */; };
+		84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394B18E8A5000094C355 /* hurdles@2x.png */; };
+		84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394D18E8A50B0094C355 /* ninja@2x.png */; };
+		84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394F18E8AF070094C355 /* BGgame@2x.png */; };
+		84EE395218E8AF410094C355 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395118E8AF410094C355 /* grass.png */; };
 		8D077AC818E7F53F005F4740 /* SSGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077AC718E7F53F005F4740 /* SSGameOverScene.m */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +137,10 @@
 		84EE394618E880CC0094C355 /* SSFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFriendsViewController.h; sourceTree = "<group>"; };
 		84EE394718E880CC0094C355 /* SSFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFriendsViewController.m; sourceTree = "<group>"; };
 		84EE394818E880CC0094C355 /* SSFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSFriendsViewController.xib; sourceTree = "<group>"; };
+		84EE394B18E8A5000094C355 /* hurdles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdles@2x.png"; sourceTree = "<group>"; };
+		84EE394D18E8A50B0094C355 /* ninja@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja@2x.png"; sourceTree = "<group>"; };
+		84EE394F18E8AF070094C355 /* BGgame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGgame@2x.png"; sourceTree = "<group>"; };
+		84EE395118E8AF410094C355 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		8D077AC618E7F53F005F4740 /* SSGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSGameOverScene.h; sourceTree = "<group>"; };
 		8D077AC718E7F53F005F4740 /* SSGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSGameOverScene.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,10 +243,14 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84EE395118E8AF410094C355 /* grass.png */,
+				84EE394F18E8AF070094C355 /* BGgame@2x.png */,
 				84EE393F18E8793D0094C355 /* friendsScreen1.png */,
 				84EE394318E8797D0094C355 /* welcomeScreen.png */,
+				84EE394B18E8A5000094C355 /* hurdles@2x.png */,
 				84EE394118E879690094C355 /* splashScreen1.png */,
 				84EE393D18E879260094C355 /* buttons.png */,
+				84EE394D18E8A50B0094C355 /* ninja@2x.png */,
 				84EE393918E879100094C355 /* avatars_brit copy.png */,
 				84EE393A18E879100094C355 /* avatars_Matt copy.png */,
 				84EE393718E878FB0094C355 /* avatars_alex.png */,
@@ -460,6 +472,7 @@
 			files = (
 				84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */,
 				84EE394018E8793D0094C355 /* friendsScreen1.png in Resources */,
+				84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */,
 				84EE394418E8797D0094C355 /* welcomeScreen.png in Resources */,
 				84EE392918E7D59C0094C355 /* pew-pew-lei.caf in Resources */,
 				84EE393E18E879260094C355 /* buttons.png in Resources */,
@@ -467,6 +480,9 @@
 				84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */,
 				84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */,
 				84EE394218E879690094C355 /* splashScreen1.png in Resources */,
+				84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */,
+				84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */,
+				84EE395218E8AF410094C355 /* grass.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */,
 				84EE392818E7D59C0094C355 /* background-music-aac.caf in Resources */,

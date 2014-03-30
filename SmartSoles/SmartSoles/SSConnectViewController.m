@@ -81,7 +81,7 @@
             
             value = data[i+2] | data[i+1] << 8;
             analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
-            [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            //[SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
         }
     }
 }
@@ -93,12 +93,12 @@
         [self pullData];
         [NSThread sleepForTimeInterval:0.5];
     }*/
-    [SSDataFormulationAndSave retrieveAndFormulateActivityData];
-    [self pullData];
+    //[SSDataFormulationAndSave retrieveAndFormulateActivityData];
+    //[self pullData];
 }
 
 -(void)pullData {
-    UInt8 buf[3] = {0xA0, 0x01, 0x00};
+    UInt8 buf[3] = {0xA7, 0x01, 0x00};
     
     buf[1] = 0x01;
     

@@ -51,7 +51,7 @@
         [skView presentScene:scene];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:(float).1 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
 }
 
 - (BOOL)shouldAutorotate
@@ -83,7 +83,7 @@
 }
 
 -(void)pullData {
-    UInt8 buf[3] = {0xA9, 0x01, 0x00};
+    UInt8 buf[3] = {0xA7, 0x01, 0x00};
     
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [[SSSession sharedSession].ble write:data];
