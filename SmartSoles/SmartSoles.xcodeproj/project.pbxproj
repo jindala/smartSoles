@@ -43,6 +43,7 @@
 		84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392718E7D59C0094C355 /* sprites.atlas */; };
 		84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392D18E7E24A0094C355 /* welcomeScreen1.png */; };
 		84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392F18E7E5150094C355 /* splashScreenBackground.png */; };
+		8D077AC818E7F53F005F4740 /* SSGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077AC718E7F53F005F4740 /* SSGameOverScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		84EE392718E7D59C0094C355 /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 		84EE392D18E7E24A0094C355 /* welcomeScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomeScreen1.png; sourceTree = "<group>"; };
 		84EE392F18E7E5150094C355 /* splashScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreenBackground.png; sourceTree = "<group>"; };
+		8D077AC618E7F53F005F4740 /* SSGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSGameOverScene.h; sourceTree = "<group>"; };
+		8D077AC718E7F53F005F4740 /* SSGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSGameOverScene.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +190,7 @@
 		848C340918E699AD00CA1DD1 /* SmartSoles */ = {
 			isa = PBXGroup;
 			children = (
+				8D077AC518E7F530005F4740 /* GameOverScene */,
 				84EE391A18E7D04A0094C355 /* GameScreen */,
 				84EE38B218E77B300094C355 /* Utility */,
 				84EE38AB18E76D3A0094C355 /* Model */,
@@ -309,6 +313,15 @@
 				84EE392618E7D59C0094C355 /* pew-pew-lei.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		8D077AC518E7F530005F4740 /* GameOverScene */ = {
+			isa = PBXGroup;
+			children = (
+				8D077AC618E7F53F005F4740 /* SSGameOverScene.h */,
+				8D077AC718E7F53F005F4740 /* SSGameOverScene.m */,
+			);
+			name = GameOverScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,6 +472,7 @@
 				84EE38C718E7976F0094C355 /* SSDataFormulationAndSave.m in Sources */,
 				84EE38BE18E781DE0094C355 /* Activity+Utility.m in Sources */,
 				84EE38B118E76DBD0094C355 /* SmartSolesModel.xcdatamodeld in Sources */,
+				8D077AC818E7F53F005F4740 /* SSGameOverScene.m in Sources */,
 				84EE38BB18E7804B0094C355 /* User.m in Sources */,
 				84EE38B818E7804B0094C355 /* Activity.m in Sources */,
 				848C341418E699AD00CA1DD1 /* SSAppDelegate.m in Sources */,
