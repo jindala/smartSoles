@@ -111,7 +111,7 @@
             
             value = data[i+2] | data[i+1] << 8;
             //analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
-            NSDictionary *formulatedDict = [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            NSDictionary *formulatedDict = [SSDataFormulationAndSave formulateSoleData:[NSNumber numberWithInteger:value]];
             SKView * skView = (SKView *)self.view;
             if(skView.scene) {
                 ((SSMyScene *)skView.scene).latestSoleData = [formulatedDict mutableCopy];

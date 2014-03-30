@@ -21,7 +21,19 @@
     [dictionary setObject:@"Hurdle" forKey:@"gameName"];
     [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"footPos"];
     
-    [Activity saveNewActivityWithDictionary:dictionary inManagedDataObject:[SSSession sharedSession].context];
+    [Activity saveNewActivityWithDictionary:[SSDataFormulationAndSave formulateSoleData:incomingValue] inManagedDataObject:[SSSession sharedSession].context];
+    
+    return dictionary;
+}
+
++(NSDictionary *)formulateSoleData:(NSNumber *)incomingValue {
+    
+    NSTimeInterval currentTime = [[NSDate date] timeIntervalSince1970];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    [dictionary setObject:[NSNumber numberWithInteger:currentTime] forKey:@"timeInMilis"];
+    [dictionary setObject:incomingValue forKey:@"resistance"];
+    [dictionary setObject:@"Hurdle" forKey:@"gameName"];
+    [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"footPos"];
     
     return dictionary;
 }

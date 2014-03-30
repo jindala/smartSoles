@@ -235,9 +235,9 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84EE393F18E8793D0094C355 /* friendsScreen1.png */,
 				84EE394318E8797D0094C355 /* welcomeScreen.png */,
 				84EE394118E879690094C355 /* splashScreen1.png */,
-				84EE393F18E8793D0094C355 /* friendsScreen1.png */,
 				84EE393D18E879260094C355 /* buttons.png */,
 				84EE393918E879100094C355 /* avatars_brit copy.png */,
 				84EE393A18E879100094C355 /* avatars_Matt copy.png */,

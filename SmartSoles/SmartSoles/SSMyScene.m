@@ -15,6 +15,8 @@
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) SKSpriteNode *calorieCounter;
+@property (nonatomic) float totalCaloriesBurnt;
+@property (nonatomic) NSMutableArray *lastActionArray;
 @property (nonatomic) int hurdles;
 @end
 
@@ -33,6 +35,8 @@ static const uint32_t monsterCategory        =  0x1 << 1;
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
+        self.totalCaloriesBurnt = 0;
+        self.lastActionArray = [[NSMutableArray alloc] init];
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
         // Background
@@ -140,7 +144,7 @@ static const uint32_t monsterCategory        =  0x1 << 1;
 
 - (void)projectile:(SKSpriteNode *)player didCollideWithMonster:(SKSpriteNode *)monster {
     NSLog(@"Did not hurdle");
-    SKAction *loseAction = [SKAction runBlock:^{
+    /*SKAction *loseAction = [SKAction runBlock:^{
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
                                                                        won:NO];
@@ -148,7 +152,7 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     }];
     
     
-    [player runAction:loseAction];
+    [player runAction:loseAction];*/
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
@@ -172,8 +176,8 @@ static const uint32_t monsterCategory        =  0x1 << 1;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
-    
+    //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    SKAction *followTrack = [SKAction followPath:[self createFallPath] asOffset:NO orientToPath:YES duration:0.5];
     [self.player runAction:followTrack];
 }
 
@@ -197,18 +201,58 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     return path;
 }
 
+-(CGMutablePathRef) createFallPath {
+    int arcCenterX = self.player.frame.origin.x;
+    CGPoint initialPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
+    CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y );
+    //CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.frame.size.height/2);
+    
+    NSMutableArray *jumpPoints = [NSMutableArray arrayWithObjects:[NSValue valueWithCGPoint:initialPoint], [NSValue valueWithCGPoint:firstPoint], nil];
+    CGMutablePathRef path = CGPathCreateMutable();
+    if (jumpPoints && jumpPoints.count > 0) {
+        CGPoint p = [(NSValue *)[jumpPoints objectAtIndex:0] CGPointValue];
+        CGPathMoveToPoint(path, nil, p.x, p.y);
+        for (int i = 1; i < jumpPoints.count; i++) {
+            p = [(NSValue *)[jumpPoints objectAtIndex:i] CGPointValue];
+            CGPathAddLineToPoint(path, nil, p.x, p.y);
+        }
+    }
+    
+    return path;
+}
+
 -(void)updatePlayerPosition {
     NSNumber *resistance = _latestSoleData[@"resistance"];
     //NSNumber *timeInMilis = _latestSoleData[@"timeInMilis"];
     
     if(1023-[resistance intValue]<10) {
         NSLog(@"I am pressed %d ", [resistance intValue]);
-        self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        [self.lastActionArray addObject:[NSNumber numberWithInt:0]];
     }
     else {
          NSLog(@"I am in air %d ", [resistance intValue]);
-        SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
-        [self.player runAction:followTrack];
+        [self.lastActionArray addObject:[NSNumber numberWithInt:1]];
+        
+    }
+    if(self.lastActionArray && [self.lastActionArray count]>2) {
+        int previousAction = [[self.lastActionArray objectAtIndex:[self.lastActionArray count]-1] intValue];
+        int secondLastAction = [[self.lastActionArray objectAtIndex:[self.lastActionArray count]-2] intValue];
+        
+        if(previousAction == 1 && secondLastAction == 1) {
+            NSLog(@"I am Jumping");
+            SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+            [self.player runAction:followTrack];
+            self.totalCaloriesBurnt =+.15;
+        }
+        else if(previousAction == 0 && secondLastAction == 0) {
+            NSLog(@"I am standing");
+            self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        }
+        else {
+            NSLog(@"I am running/walking");
+            self.totalCaloriesBurnt =+.05;
+        }
+        
     }
 }
 
