@@ -33,6 +33,7 @@
 		84EE38BE18E781DE0094C355 /* Activity+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38BD18E781DE0094C355 /* Activity+Utility.m */; };
 		84EE38C118E784DA0094C355 /* User+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C018E784DA0094C355 /* User+Utility.m */; };
 		84EE38C418E78CAA0094C355 /* SSAppDelegate+MOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C318E78CAA0094C355 /* SSAppDelegate+MOC.m */; };
+		84EE38C718E7976F0094C355 /* SSDataFormulationAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C618E7976F0094C355 /* SSDataFormulationAndSave.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		84EE38C018E784DA0094C355 /* User+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Utility.m"; sourceTree = "<group>"; };
 		84EE38C218E78CAA0094C355 /* SSAppDelegate+MOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SSAppDelegate+MOC.h"; sourceTree = "<group>"; };
 		84EE38C318E78CAA0094C355 /* SSAppDelegate+MOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSAppDelegate+MOC.m"; sourceTree = "<group>"; };
+		84EE38C518E7976F0094C355 /* SSDataFormulationAndSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDataFormulationAndSave.h; sourceTree = "<group>"; };
+		84EE38C618E7976F0094C355 /* SSDataFormulationAndSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDataFormulationAndSave.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -246,6 +249,8 @@
 			children = (
 				84EE38B318E77B640094C355 /* SSSession.h */,
 				84EE38B418E77B640094C355 /* SSSession.m */,
+				84EE38C518E7976F0094C355 /* SSDataFormulationAndSave.h */,
+				84EE38C618E7976F0094C355 /* SSDataFormulationAndSave.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EE38B518E77B640094C355 /* SSSession.m in Sources */,
+				84EE38C718E7976F0094C355 /* SSDataFormulationAndSave.m in Sources */,
 				84EE38BE18E781DE0094C355 /* Activity+Utility.m in Sources */,
 				84EE38B118E76DBD0094C355 /* SmartSolesModel.xcdatamodeld in Sources */,
 				84EE38BB18E7804B0094C355 /* User.m in Sources */,
@@ -455,7 +461,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Niladri Bora (68STF4X8AN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Niladri Bora (68STF4X8AN)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -473,6 +480,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -493,7 +501,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Niladri Bora (68STF4X8AN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Niladri Bora (68STF4X8AN)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,6 +513,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -515,8 +525,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Niladri Bora (68STF4X8AN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Niladri Bora (68STF4X8AN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -525,7 +535,7 @@
 				GCC_PREFIX_HEADER = "SmartSoles/SmartSoles-Prefix.pch";
 				INFOPLIST_FILE = "SmartSoles/SmartSoles-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -536,8 +546,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Niladri Bora (68STF4X8AN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Niladri Bora (68STF4X8AN)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -546,7 +556,7 @@
 				GCC_PREFIX_HEADER = "SmartSoles/SmartSoles-Prefix.pch";
 				INFOPLIST_FILE = "SmartSoles/SmartSoles-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

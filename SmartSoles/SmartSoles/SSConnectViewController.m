@@ -7,6 +7,7 @@
 //
 
 #import "SSConnectViewController.h"
+#import "SSDataFormulationAndSave.h"
 
 @interface SSConnectViewController ()
 
@@ -68,10 +69,11 @@
         }
         else if (data[i] == 0x0B) {
             //analog read
-            UInt16 Value;
+            UInt16 value;
             
-            Value = data[i+2] | data[i+1] << 8;
-            analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", Value];
+            value = data[i+2] | data[i+1] << 8;
+            analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
+            [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
         }
     }
 }
@@ -79,6 +81,15 @@
 /* Send command to Arduino to enable analog reading */
 -(IBAction)sendAnalogIn:(id)sender
 {
+    /*for (int i=0; i<50; i++) {
+        [self pullData];
+        [NSThread sleepForTimeInterval:0.5];
+    }*/
+    [SSDataFormulationAndSave retrieveAndFormulateActivityData];
+    [self pullData];
+}
+
+-(void)pullData {
     UInt8 buf[3] = {0xA0, 0x01, 0x00};
     
     buf[1] = 0x01;
@@ -86,6 +97,8 @@
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [_ble write:data];
 }
+
+
 
 #pragma mark BLE controls
 
