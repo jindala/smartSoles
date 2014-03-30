@@ -34,6 +34,10 @@
 		84EE38C118E784DA0094C355 /* User+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C018E784DA0094C355 /* User+Utility.m */; };
 		84EE38C418E78CAA0094C355 /* SSAppDelegate+MOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C318E78CAA0094C355 /* SSAppDelegate+MOC.m */; };
 		84EE38C718E7976F0094C355 /* SSDataFormulationAndSave.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE38C618E7976F0094C355 /* SSDataFormulationAndSave.m */; };
+		84EE391918E7D0270094C355 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EE391818E7D0270094C355 /* SpriteKit.framework */; };
+		84EE391E18E7D3040094C355 /* SSGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE391C18E7D3040094C355 /* SSGameViewController.m */; };
+		84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE391D18E7D3040094C355 /* SSGameViewController.xib */; };
+		84EE392218E7D3960094C355 /* SSMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE392118E7D3960094C355 /* SSMyScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,12 @@
 		84EE38C318E78CAA0094C355 /* SSAppDelegate+MOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SSAppDelegate+MOC.m"; sourceTree = "<group>"; };
 		84EE38C518E7976F0094C355 /* SSDataFormulationAndSave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSDataFormulationAndSave.h; sourceTree = "<group>"; };
 		84EE38C618E7976F0094C355 /* SSDataFormulationAndSave.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSDataFormulationAndSave.m; sourceTree = "<group>"; };
+		84EE391818E7D0270094C355 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		84EE391B18E7D3040094C355 /* SSGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSGameViewController.h; sourceTree = "<group>"; };
+		84EE391C18E7D3040094C355 /* SSGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSGameViewController.m; sourceTree = "<group>"; };
+		84EE391D18E7D3040094C355 /* SSGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSGameViewController.xib; sourceTree = "<group>"; };
+		84EE392018E7D3960094C355 /* SSMyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMyScene.h; sourceTree = "<group>"; };
+		84EE392118E7D3960094C355 /* SSMyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMyScene.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EE391918E7D0270094C355 /* SpriteKit.framework in Frameworks */,
 				848C340618E699AD00CA1DD1 /* CoreGraphics.framework in Frameworks */,
 				84EE389F18E74CC60094C355 /* FacebookSDK.framework in Frameworks */,
 				848C340818E699AD00CA1DD1 /* UIKit.framework in Frameworks */,
@@ -151,6 +162,7 @@
 		848C340218E699AD00CA1DD1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84EE391818E7D0270094C355 /* SpriteKit.framework */,
 				84EE38A618E75C130094C355 /* BLE */,
 				84EE389E18E74CC60094C355 /* FacebookSDK.framework */,
 				848C340318E699AD00CA1DD1 /* Foundation.framework */,
@@ -165,6 +177,7 @@
 		848C340918E699AD00CA1DD1 /* SmartSoles */ = {
 			isa = PBXGroup;
 			children = (
+				84EE391A18E7D04A0094C355 /* GameScreen */,
 				84EE38B218E77B300094C355 /* Utility */,
 				84EE38AB18E76D3A0094C355 /* Model */,
 				84EE38A018E750AA0094C355 /* ConnectScreen */,
@@ -255,6 +268,18 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		84EE391A18E7D04A0094C355 /* GameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				84EE391B18E7D3040094C355 /* SSGameViewController.h */,
+				84EE391C18E7D3040094C355 /* SSGameViewController.m */,
+				84EE391D18E7D3040094C355 /* SSGameViewController.xib */,
+				84EE392018E7D3960094C355 /* SSMyScene.h */,
+				84EE392118E7D3960094C355 /* SSMyScene.m */,
+			);
+			name = GameScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
@@ -391,6 +417,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EE391E18E7D3040094C355 /* SSGameViewController.m in Sources */,
+				84EE392218E7D3960094C355 /* SSMyScene.m in Sources */,
 				84EE38B518E77B640094C355 /* SSSession.m in Sources */,
 				84EE38C718E7976F0094C355 /* SSDataFormulationAndSave.m in Sources */,
 				84EE38BE18E781DE0094C355 /* Activity+Utility.m in Sources */,
