@@ -9,9 +9,11 @@
 #import "SSMyScene.h"
 #import "SSGameOverScene.h"
 #import <math.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface SSMyScene () <SKPhysicsContactDelegate>
 @property (nonatomic) SKSpriteNode * player;
+@property (nonatomic) SKSpriteNode * box;
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) int hurdles;
@@ -21,7 +23,8 @@
 @implementation SSMyScene
 
 static const uint32_t playerCategory         =  0x1 << 0;
-static const uint32_t monsterCategory        =  0x1 << 1;
+static const uint32_t monsterCategory        =  0x1 << 2;
+static const uint32_t boxCategory            =  0x1 << 1;
 @synthesize latestSoleData = _latestSoleData;
 
 -(void)setLatestSoleData:(NSMutableDictionary *)latestSoleData {
@@ -51,6 +54,18 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         self.player.zPosition = 1;
         [self addChild:self.player];
         
+        // Sprite for invisible box to detect when monster is approaching.
+        self.box = [SKSpriteNode spriteNodeWithImageNamed:@"invisible"];
+        self.box.position = CGPointMake(self.box.size.width/2 + 150, self.frame.size.height/2);
+        self.box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.box.size];
+        self.box.physicsBody.dynamic = YES;
+        self.box.physicsBody.categoryBitMask = boxCategory;
+        self.box.physicsBody.contactTestBitMask = monsterCategory;
+        self.box.physicsBody.collisionBitMask = 0;
+        self.box.physicsBody.usesPreciseCollisionDetection = YES;
+        self.box.zPosition = 1;
+        [self addChild:self.box];
+        
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -20);
@@ -62,6 +77,16 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
+        
+        // Computer-generated voice to say "Run."
+        
+        AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Run"];
+        [utterance setRate:0.25f];
+        utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-GB"];
+        utterance.preUtteranceDelay = 0.1;
+        [synthesizer speakUtterance:utterance];
+        
     }
     return self;
 }
@@ -80,9 +105,11 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
     monster.physicsBody.dynamic = YES;
     monster.physicsBody.categoryBitMask = monsterCategory;
-    monster.physicsBody.contactTestBitMask = playerCategory;
+    monster.physicsBody.contactTestBitMask = playerCategory | boxCategory;
     monster.physicsBody.collisionBitMask = 0;
 
+    
+    
     
     [self addChild:monster];
     
@@ -143,8 +170,29 @@ static const uint32_t monsterCategory        =  0x1 << 1;
             [self.view presentScene:gameOverScene transition:reveal];
     }];
     
+    // Computer-generated voice to say "Ouch."
+    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Ouch"];
+    [utterance setRate:0.25f];
+    [utterance setPitchMultiplier:0.75f];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    //utterance.preUtteranceDelay = 0.1;
+    [synthesizer speakUtterance:utterance];
     
     [player runAction:loseAction];
+}
+
+- (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
+    NSLog(@"Box colliding with Monster");
+    
+    // Computer-generated voice to say "Jump."
+    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Jump"];
+    [utterance setRate:0.25f];
+    [utterance setPitchMultiplier:0.75f];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    //utterance.preUtteranceDelay = 0.1;
+    [synthesizer speakUtterance:utterance];
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
@@ -159,9 +207,20 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         secondBody = contact.bodyA;
     }
     
+    
+    if ((firstBody.categoryBitMask & playerCategory) != 0 &&
+        (secondBody.categoryBitMask & boxCategory) != 0) {
+        //ignore
+    }
+    
     if ((firstBody.categoryBitMask & playerCategory) != 0 &&
         (secondBody.categoryBitMask & monsterCategory) != 0) {
         [self projectile:(SKSpriteNode *) firstBody.node didCollideWithMonster:(SKSpriteNode *) secondBody.node];
+    }
+    
+    if ((firstBody.categoryBitMask & boxCategory) != 0 &&
+        (secondBody.categoryBitMask & monsterCategory) != 0) {
+        [self projectile:(SKSpriteNode *) firstBody.node didBoxCollideWithMonster:(SKSpriteNode *) secondBody.node];
     }
 }
 
@@ -171,6 +230,11 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
     
     [self.player runAction:followTrack];
+    
+    // JUMP SOUND
+    [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
+
+    
 }
 
 -(CGMutablePathRef) createJumpPath {
