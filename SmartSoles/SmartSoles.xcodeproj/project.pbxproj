@@ -41,6 +41,8 @@
 		84EE392818E7D59C0094C355 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392518E7D59C0094C355 /* background-music-aac.caf */; };
 		84EE392918E7D59C0094C355 /* pew-pew-lei.caf in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392618E7D59C0094C355 /* pew-pew-lei.caf */; };
 		84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392718E7D59C0094C355 /* sprites.atlas */; };
+		84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392D18E7E24A0094C355 /* welcomeScreen1.png */; };
+		84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE392F18E7E5150094C355 /* splashScreenBackground.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		84EE392518E7D59C0094C355 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		84EE392618E7D59C0094C355 /* pew-pew-lei.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pew-pew-lei.caf"; sourceTree = "<group>"; };
 		84EE392718E7D59C0094C355 /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
+		84EE392D18E7E24A0094C355 /* welcomeScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomeScreen1.png; sourceTree = "<group>"; };
+		84EE392F18E7E5150094C355 /* splashScreenBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreenBackground.png; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +205,8 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84EE392F18E7E5150094C355 /* splashScreenBackground.png */,
+				84EE392D18E7E24A0094C355 /* welcomeScreen1.png */,
 				84EE392318E7D59C0094C355 /* SpriteKitSimpleGameResources */,
 				848C340B18E699AD00CA1DD1 /* SmartSoles-Info.plist */,
 				848C340C18E699AD00CA1DD1 /* InfoPlist.strings */,
@@ -386,10 +392,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */,
 				84EE392918E7D59C0094C355 /* pew-pew-lei.caf in Resources */,
 				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
 				84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
+				84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */,
 				84EE392818E7D59C0094C355 /* background-music-aac.caf in Resources */,
 				840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,

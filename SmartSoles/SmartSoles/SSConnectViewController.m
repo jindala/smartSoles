@@ -33,6 +33,11 @@
     [SSSession sharedSession].ble = [[BLE alloc] init];
     [[SSSession sharedSession].ble controlSetup];
     [SSSession sharedSession].ble.delegate = self;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splashScreenBackground"]];
+    
+    [self.view addSubview:imageView ];
+    [self.view sendSubviewToBack:imageView ];
 }
 
 - (void)didReceiveMemoryWarning
