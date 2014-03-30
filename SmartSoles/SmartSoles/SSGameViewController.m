@@ -45,7 +45,7 @@
         [skView presentScene:scene];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float).10 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:(float)1.0 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
 }
 
 - (BOOL)shouldAutorotate
