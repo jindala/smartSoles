@@ -10,9 +10,10 @@
 #import "SSMyScene.h"
 #import "SSDataFormulationAndSave.h"
 #import "SSSession.h"
+@import AVFoundation;
 
 @interface SSGameViewController ()
-
+@property (nonatomic) AVAudioPlayer * backgroundMusicPlayer;
 @end
 
 @implementation SSGameViewController
@@ -31,6 +32,14 @@
 {
     [super viewWillLayoutSubviews];
     
+    // BACKGROUND MUSIC
+    NSError *error;
+    NSURL * backgroundMusicURL = [[NSBundle mainBundle] URLForResource:@"background-music-aac" withExtension:@"caf"];
+    self.backgroundMusicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:backgroundMusicURL error:&error];
+    self.backgroundMusicPlayer.numberOfLoops = -1;
+    self.backgroundMusicPlayer.volume = 0.5; // make volume lower so that wooshes can be heard.
+    [self.backgroundMusicPlayer prepareToPlay];
+    [self.backgroundMusicPlayer play];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
