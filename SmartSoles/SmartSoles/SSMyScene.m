@@ -146,17 +146,8 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-monster.size.width/2, actualY) duration:actualDuration];
-<<<<<<< HEAD
-    SKAction * actionMoveDone = [SKAction removeFromParent];/*[SKAction runBlock:^{
-=======
     SKAction * actionMoveDone = [SKAction removeFromParent];
-
-    /*
-    SKAction * actionMoveDone = [SKAction runBlock:^{
->>>>>>> b2db2dfc0f0fdc39184b8806bf37bc2b8f6aa6e4
-        [SKAction removeFromParent];
-        _hurdles++;
-    }];*/
+    
     SKAction *winAction = [SKAction runBlock:^{
         if([self hurdles] > 30) {
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
@@ -165,7 +156,7 @@ static const uint32_t monsterCategory        =  0x1 << 1;
             [self.view presentScene:gameOverScene transition:reveal];
         }
     }];
-     */
+    
 
     
     [monster runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
@@ -226,10 +217,6 @@ static const uint32_t monsterCategory        =  0x1 << 1;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-<<<<<<< HEAD
-    SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
-    //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:0.5];
-=======
     //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
     CGMutablePathRef fallPath = [self createFallPath];
     
@@ -244,7 +231,6 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     CGContextAddPath(context, fallPath);
     CGContextStrokePath(context);
     
->>>>>>> b2db2dfc0f0fdc39184b8806bf37bc2b8f6aa6e4
     [self.player runAction:followTrack];
     [_scoreLabel addScore:0.15];
 }
