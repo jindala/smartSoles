@@ -13,6 +13,7 @@
 static SSSession *sSharedSession = nil;
 
 @synthesize context = _context;
+@synthesize name = _name;
 
 + (SSSession*) sharedInstance
 {

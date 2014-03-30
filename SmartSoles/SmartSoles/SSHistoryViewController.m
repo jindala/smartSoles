@@ -8,8 +8,11 @@
 
 #import "SSHistoryViewController.h"
 #import "SSAppDelegate.h"
+#import "SSDataFormulationAndSave.h"
 
 @interface SSHistoryViewController ()
+@property (nonatomic, strong) NSArray *historicData;
+@property (nonatomic, strong) NSArray *daysArray;
 
 @end
 
@@ -35,7 +38,11 @@
     myGraph.colorTop = [UIColor greenColor];
     myGraph.colorLine = [UIColor whiteColor];
     myGraph.colorBottom = [UIColor greenColor];
-    myGraph.widthLine = 3.0;
+    myGraph.widthLine = 5.0;
+    
+    self.daysArray = [NSArray arrayWithObjects:@"Friday", @"Saturday", @"Sunday", nil];
+    self.historicData = [SSDataFormulationAndSave retrieveAndFormulateActivityData];
+    
     [self.view addSubview:myGraph];
     
 }
@@ -46,42 +53,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginWithFacebook:(id)sender {
-    // If the session state is any of the two "open" states when the button is clicked
-    if (FBSession.activeSession.state == FBSessionStateOpen
-        || FBSession.activeSession.state == FBSessionStateOpenTokenExtended) {
-        
-        NSLog(@"Startup: user is already logged in. We are not handling logout here");
-        // Close the session and remove the access token from the cache
-        // The session state handler (in the app delegate) will be called automatically
-        //[FBSession.activeSession closeAndClearTokenInformation];
-        
-        // If the session state is not any of the two "open" states when the button is clicked
-    } else {
-        // Open a session showing the user the login UI
-        // You must ALWAYS ask for basic_info permissions when opening a session
-        [FBSession openActiveSessionWithReadPermissions:@[@"basic_info", @"email"]
-                                           allowLoginUI:YES
-                                      completionHandler:
-         ^(FBSession *session, FBSessionState state, NSError *error) {
-             
-             // Retrieve the app delegate
-             SSAppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
-             // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
-             [appDelegate sessionStateChanged:session state:state error:error];
-         }];
-    }
-}
 
 
 #pragma mark - handle graph library delegate
 
 -(NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return 10;
+    return [self.historicData count];
 }
 
 -(CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    return 5.0;
+    NSDictionary *activityDict = [self.historicData objectAtIndex:index];
+    NSNumber *resistance = activityDict[@"resistance"];
+    return [resistance floatValue];
 }
 
 -(void)lineGraph:(BEMSimpleLineGraphView *)graph didTouchGraphWithClosestIndex:(NSInteger)index {
@@ -91,13 +74,13 @@
 -(void)lineGraph:(BEMSimpleLineGraphView *)graph didReleaseTouchFromGraphWithClosestIndex:(CGFloat)index {
     
 }
-
+/*
 -(NSInteger)numberOfGapsBetweenLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
-    return 5;
+    return [self.daysArray count];
 }
 
 -(NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    return @"day";
-}
+    return [self.daysArray objectAtIndex:index];
+}*/
 
 @end

@@ -14,6 +14,7 @@
 @property (nonatomic) SKSpriteNode * player;
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic) SKSpriteNode *calorieCounter;
 @property (nonatomic) int hurdles;
 @end
 
@@ -34,12 +35,14 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
+        // Background
         SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"welcomeScreen1"];
         sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         sn.name = @"BACKGROUND";
         sn.zPosition = -1;
         [self addChild:sn];
         
+        // Player
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
         self.player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.player.size];
@@ -51,6 +54,7 @@ static const uint32_t monsterCategory        =  0x1 << 1;
         self.player.zPosition = 1;
         [self addChild:self.player];
         
+        // Line
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
         CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -20);

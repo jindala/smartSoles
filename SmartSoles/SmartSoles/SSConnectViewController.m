@@ -10,6 +10,7 @@
 #import "SSDataFormulationAndSave.h"
 #import "SSSession.h"
 #import "SSGameViewController.h"
+#import "SSHomeViewController.h"
 
 @interface SSConnectViewController ()
 
@@ -143,6 +144,7 @@
     {
         [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
         [connectIndicator stopAnimating];
+        [self goToNextScreen];
     }
 }
 // When disconnected, this will be called
@@ -158,13 +160,19 @@
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [[SSSession sharedSession].ble write:data];
     
+    [SSSession sharedSession].name = self.nameTextField.text;
+    
     [self goToNextScreen];
 }
 
 -(void)goToNextScreen {
     //Go to next screen
-    SSGameViewController *gameController = [[SSGameViewController alloc] initWithNibName:@"SSGameViewController" bundle:nil];
-    [self presentViewController:gameController animated:YES completion:nil];
+    //SSGameViewController *gameController = [[SSGameViewController alloc] initWithNibName:@"SSGameViewController" bundle:nil];
+    
+    SSHomeViewController *homeVC = [[SSHomeViewController alloc] initWithNibName:@"SSHomeViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [SSSession sharedSession].navController = navController;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)bleDidDisconnect {
