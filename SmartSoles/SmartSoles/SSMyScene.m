@@ -240,8 +240,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Jump"];
     [utterance setRate:0.25f];
-    [utterance setPitchMultiplier:0.75f];
-    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+    [utterance setPitchMultiplier:1.25f];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-GB"];
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
 }
@@ -276,7 +276,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    /*
     CGMutablePathRef fallPath = [self createFallPath];
     
     SKAction *followTrack = [SKAction followPath:fallPath asOffset:NO orientToPath:YES duration:0.5];
@@ -289,6 +290,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     // Draw the points
     CGContextAddPath(context, fallPath);
     CGContextStrokePath(context);
+     */
     
     [self.player runAction:followTrack];
     // JUMP SOUND
