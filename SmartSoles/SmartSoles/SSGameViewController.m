@@ -31,6 +31,11 @@
 {
     [super viewWillLayoutSubviews];
     
+    /*UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"welcomeScreen1"]];
+    
+    [self.view addSubview:imageView ];
+    [self.view sendSubviewToBack:imageView ];*/
+    
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
@@ -45,7 +50,7 @@
         [skView presentScene:scene];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)0.5 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:(float)0.5 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
 }
 
 - (BOOL)shouldAutorotate
@@ -121,6 +126,28 @@
     }
     
     return NO;
+}
+
+-(void) bleDidConnect {
+    NSLog(@"->Connected");
+    
+    // send reset
+    UInt8 buf[] = {0x04, 0x00, 0x00};
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [[SSSession sharedSession].ble write:data];
+    
+    [NSTimer scheduledTimerWithTimeInterval:(float)0.5 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
+}
+
+- (void)bleDidDisconnect {
+    NSLog(@"->Disconnected");
+    
+    [self showMessage:@"Sole disconnected" withTitle:@"Connection Lost"];
+}
+
+-(void)showMessage:(NSString *)alertText withTitle:(NSString *)alertTitle {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertText delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

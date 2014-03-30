@@ -35,10 +35,10 @@
         SKShapeNode *yourline = [SKShapeNode node];
         
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw, NULL, 100.0, 100.0);
-        CGPathAddLineToPoint(pathToDraw, NULL, 50.0, 50.0);
+        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -20);
+        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -20);
         yourline.path = pathToDraw;
-        [yourline setStrokeColor:[UIColor redColor]];
+        [yourline setStrokeColor:[UIColor grayColor]];
         [self addChild:yourline];
         
     }
