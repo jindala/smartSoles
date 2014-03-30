@@ -25,13 +25,19 @@
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
         // 3
-        self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"welcomeScreen1"];
+        sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        sn.name = @"BACKGROUND";
+        sn.zPosition = -1;
+        [self addChild:sn];
         
         // 4
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"player"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        self.player.zPosition = 1;
         [self addChild:self.player];
         
+        // 5
         SKShapeNode *yourline = [SKShapeNode node];
         
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
@@ -39,6 +45,7 @@
         CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -20);
         yourline.path = pathToDraw;
         [yourline setStrokeColor:[UIColor grayColor]];
+        yourline.zPosition = 0;
         [self addChild:yourline];
         
     }
