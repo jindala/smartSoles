@@ -143,7 +143,6 @@
     {
         [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
         [connectIndicator stopAnimating];
-        [self goToNextScreen];
     }
 }
 // When disconnected, this will be called

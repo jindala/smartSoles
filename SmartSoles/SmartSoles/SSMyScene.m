@@ -22,6 +22,12 @@
 
 static const uint32_t playerCategory         =  0x1 << 0;
 static const uint32_t monsterCategory        =  0x1 << 1;
+@synthesize latestSoleData = _latestSoleData;
+
+-(void)setLatestSoleData:(NSMutableDictionary *)latestSoleData {
+    _latestSoleData = latestSoleData;
+    [self updatePlayerPosition];
+}
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -185,6 +191,21 @@ static const uint32_t monsterCategory        =  0x1 << 1;
     }
     
     return path;
+}
+
+-(void)updatePlayerPosition {
+    NSNumber *resistance = _latestSoleData[@"resistance"];
+    //NSNumber *timeInMilis = _latestSoleData[@"timeInMilis"];
+    
+    if(1023-[resistance intValue]<10) {
+        NSLog(@"I am pressed %d ", [resistance intValue]);
+        self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+    }
+    else {
+         NSLog(@"I am in air %d ", [resistance intValue]);
+        SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+        [self.player runAction:followTrack];
+    }
 }
 
 @end

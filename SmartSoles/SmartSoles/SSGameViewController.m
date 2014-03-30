@@ -45,7 +45,7 @@
         [skView presentScene:scene];
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)0.5 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:(float).10 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:YES];
 }
 
 - (BOOL)shouldAutorotate
@@ -77,9 +77,7 @@
 }
 
 -(void)pullData {
-    UInt8 buf[3] = {0xA0, 0x01, 0x00};
-    
-    buf[1] = 0x01;
+    UInt8 buf[3] = {0xA9, 0x01, 0x00};
     
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
     [[SSSession sharedSession].ble write:data];
@@ -107,7 +105,11 @@
             
             value = data[i+2] | data[i+1] << 8;
             //analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
-            [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            NSDictionary *formulatedDict = [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+            SKView * skView = (SKView *)self.view;
+            if(skView.scene) {
+                ((SSMyScene *)skView.scene).latestSoleData = [formulatedDict mutableCopy];
+            }
         }
     }
 }
