@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface SSGameViewController : UIViewController
+#import "BLE.h"
+
+@interface SSGameViewController : UIViewController <BLEDelegate>
 
 @end

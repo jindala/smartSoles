@@ -8,6 +8,8 @@
 
 #import "SSGameViewController.h"
 #import "SSMyScene.h"
+#import "SSDataFormulationAndSave.h"
+#import "SSSession.h"
 
 @interface SSGameViewController ()
 
@@ -19,6 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        [SSSession sharedSession].ble.delegate = self;
         // Custom initialization
     }
     return self;
@@ -41,6 +44,8 @@
         // Present the scene.
         [skView presentScene:scene];
     }
+    
+    [NSTimer scheduledTimerWithTimeInterval:(float)0.5 target:self selector:@selector(sendAnalogIn:) userInfo:nil repeats:NO];
 }
 
 - (BOOL)shouldAutorotate
@@ -61,6 +66,61 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+
+/* Send command to Arduino to enable analog reading */
+-(IBAction)sendAnalogIn:(id)sender
+{
+    if([self isConnected])
+        [self pullData];
+}
+
+-(void)pullData {
+    UInt8 buf[3] = {0xA0, 0x01, 0x00};
+    
+    buf[1] = 0x01;
+    
+    NSData *data = [[NSData alloc] initWithBytes:buf length:3];
+    [[SSSession sharedSession].ble write:data];
+}
+
+#pragma mark BLE controls
+
+// When data is comming, this will be called
+-(void) bleDidReceiveData:(unsigned char *)data length:(int)length
+{
+    NSLog(@"Length: %d", length);
+    
+    // parse data, all commands are in 3-byte
+    for (int i = 0; i < length; i+=3)
+    {
+        NSLog(@"0x%02X, 0x%02X, 0x%02X", data[i], data[i+1], data[i+2]);
+        
+        if (data[i] == 0x0A)
+        {
+            
+        }
+        else if (data[i] == 0x0B) {
+            //analog read
+            UInt16 value;
+            
+            value = data[i+2] | data[i+1] << 8;
+            //analogInLabel.text = [NSString stringWithFormat:@"Analog: %d", value];
+            [SSDataFormulationAndSave formulateAndSaveSoleData:[NSNumber numberWithInteger:value]];
+        }
+    }
+}
+
+-(BOOL)isConnected {
+    if ([SSSession sharedSession].ble.activePeripheral) {
+        if([SSSession sharedSession].ble.activePeripheral.state == CBPeripheralStateConnected)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

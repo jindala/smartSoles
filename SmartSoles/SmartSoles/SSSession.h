@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BLE.h"
 
 @interface SSSession : NSObject
 
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (strong, nonatomic) BLE *ble;
 
 + (SSSession*)sharedSession;
 + (id)sharedInstance;

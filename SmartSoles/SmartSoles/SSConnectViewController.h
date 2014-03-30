@@ -17,6 +17,4 @@
     IBOutlet UIButton *readButton;
 }
 
-@property (strong, nonatomic) BLE *ble;
-
 @end

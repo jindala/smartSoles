@@ -8,6 +8,8 @@
 
 #import "SSConnectViewController.h"
 #import "SSDataFormulationAndSave.h"
+#import "SSSession.h"
+#import "SSGameViewController.h"
 
 @interface SSConnectViewController ()
 
@@ -28,9 +30,9 @@
 {
     [super viewDidLoad];
     
-    _ble = [[BLE alloc] init];
-    [_ble controlSetup];
-    _ble.delegate = self;
+    [SSSession sharedSession].ble = [[BLE alloc] init];
+    [[SSSession sharedSession].ble controlSetup];
+    [SSSession sharedSession].ble.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,7 +52,7 @@
     }
     
     NSData *data = [[NSData alloc] initWithBytes:buf length:2];
-    [_ble write:data];
+    [[SSSession sharedSession].ble write:data];
 }
 
 // When data is comming, this will be called
@@ -95,7 +97,7 @@
     buf[1] = 0x01;
     
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-    [_ble write:data];
+    [[SSSession sharedSession].ble write:data];
 }
 
 
@@ -103,20 +105,20 @@
 #pragma mark BLE controls
 
 - (IBAction)connectButtonPressed:(id)sender {
-    if (_ble.activePeripheral)
-        if(_ble.activePeripheral.state == CBPeripheralStateConnected)
+    if ([SSSession sharedSession].ble.activePeripheral)
+        if([SSSession sharedSession].ble.activePeripheral.state == CBPeripheralStateConnected)
         {
-            [[_ble CM] cancelPeripheralConnection:[_ble activePeripheral]];
+            [[[SSSession sharedSession].ble CM] cancelPeripheralConnection:[[SSSession sharedSession].ble activePeripheral]];
             [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
             return;
         }
     
-    if (_ble.peripherals) {
-        _ble.peripherals = nil;
+    if ([SSSession sharedSession].ble.peripherals) {
+        [SSSession sharedSession].ble.peripherals = nil;
     }
     
     [connectButton setEnabled:false];
-    [_ble findBLEPeripherals:2];
+    [[SSSession sharedSession].ble findBLEPeripherals:2];
     
     [NSTimer scheduledTimerWithTimeInterval:(float)2.0 target:self selector:@selector(connectionTimer:) userInfo:nil repeats:NO];
     
@@ -128,14 +130,15 @@
     [connectButton setEnabled:true];
     [connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
 
-    if (_ble.peripherals.count > 0)
+    if ([SSSession sharedSession].ble.peripherals.count > 0)
     {
-        [_ble connectPeripheral:[_ble.peripherals objectAtIndex:0]];
+        [[SSSession sharedSession].ble connectPeripheral:[[SSSession sharedSession].ble.peripherals objectAtIndex:0]];
     }
     else
     {
         [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
         [connectIndicator stopAnimating];
+        [self goToNextScreen];
     }
 }
 // When disconnected, this will be called
@@ -149,7 +152,15 @@
     // send reset
     UInt8 buf[] = {0x04, 0x00, 0x00};
     NSData *data = [[NSData alloc] initWithBytes:buf length:3];
-    [_ble write:data];
+    [[SSSession sharedSession].ble write:data];
+    
+    [self goToNextScreen];
+}
+
+-(void)goToNextScreen {
+    //Go to next screen
+    SSGameViewController *gameController = [[SSGameViewController alloc] initWithNibName:@"SSGameViewController" bundle:nil];
+    [self presentViewController:gameController animated:YES completion:nil];
 }
 
 - (void)bleDidDisconnect {
