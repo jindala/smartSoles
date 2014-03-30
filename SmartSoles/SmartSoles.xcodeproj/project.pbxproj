@@ -55,6 +55,7 @@
 		84EE394918E880CC0094C355 /* SSFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EE394718E880CC0094C355 /* SSFriendsViewController.m */; };
 		84EE394A18E880CC0094C355 /* SSFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394818E880CC0094C355 /* SSFriendsViewController.xib */; };
 		8D077AC818E7F53F005F4740 /* SSGameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077AC718E7F53F005F4740 /* SSGameOverScene.m */; };
+		8D077ACB18E88DA3005F4740 /* SSScoreLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		84EE394818E880CC0094C355 /* SSFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSFriendsViewController.xib; sourceTree = "<group>"; };
 		8D077AC618E7F53F005F4740 /* SSGameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSGameOverScene.h; sourceTree = "<group>"; };
 		8D077AC718E7F53F005F4740 /* SSGameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSGameOverScene.m; sourceTree = "<group>"; };
+		8D077AC918E88DA3005F4740 /* SSScoreLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSScoreLabel.h; sourceTree = "<group>"; };
+		8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSScoreLabel.m; sourceTree = "<group>"; };
 		D368D77C93A7427A852626F5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EECBCE80CD3A4407B8FEDF1E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -326,6 +329,8 @@
 				84EE391D18E7D3040094C355 /* SSGameViewController.xib */,
 				84EE392018E7D3960094C355 /* SSMyScene.h */,
 				84EE392118E7D3960094C355 /* SSMyScene.m */,
+				8D077AC918E88DA3005F4740 /* SSScoreLabel.h */,
+				8D077ACA18E88DA3005F4740 /* SSScoreLabel.m */,
 			);
 			name = GameScreen;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				84EE38B818E7804B0094C355 /* Activity.m in Sources */,
 				848C341418E699AD00CA1DD1 /* SSAppDelegate.m in Sources */,
 				84EE38C418E78CAA0094C355 /* SSAppDelegate+MOC.m in Sources */,
+				8D077ACB18E88DA3005F4740 /* SSScoreLabel.m in Sources */,
 				840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */,
 				84EE38C118E784DA0094C355 /* User+Utility.m in Sources */,
 				84EE394918E880CC0094C355 /* SSFriendsViewController.m in Sources */,
