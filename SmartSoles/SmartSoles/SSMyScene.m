@@ -159,8 +159,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [self addChild:monster];
     
     // Determine speed of the monster
-    int minDuration = 2.0;
-    int maxDuration = 4.0;
+    int minDuration = 6.0;
+    int maxDuration = 8.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -186,7 +186,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
     
     self.lastSpawnTimeInterval += timeSinceLast;
-    if (self.lastSpawnTimeInterval > 2) {
+    if (self.lastSpawnTimeInterval > 7) {
         self.lastSpawnTimeInterval = 0;
         [self addMonster];
     }
@@ -363,7 +363,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         
         if(previousAction == 1 && secondLastAction == 1) {
             NSLog(@"I am Jumping");
-            SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+            SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:4.0];
             [self.player runAction:followTrack];
             self.totalCaloriesBurnt =+.15;
             [_scoreLabel addScore:0.15];
