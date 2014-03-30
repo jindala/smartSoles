@@ -17,6 +17,7 @@
 @property (nonatomic) SKSpriteNode * box;
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnGrassTimeInterval;
 @property (nonatomic) SKSpriteNode *calorieCounter;
 @property (nonatomic) float totalCaloriesBurnt;
 @property (nonatomic) NSMutableArray *lastActionArray;
@@ -63,14 +64,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
         
         // Player
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"ninja"];
-        self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+        self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/3);
         self.player.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.player.size];
         self.player.physicsBody.dynamic = YES;
         self.player.physicsBody.categoryBitMask = playerCategory;
         self.player.physicsBody.contactTestBitMask = monsterCategory;
         self.player.physicsBody.collisionBitMask = 0;
         self.player.physicsBody.usesPreciseCollisionDetection = YES;
-        self.player.zPosition = 1;
+        self.player.zPosition = .5;
         [self addChild:self.player];
         
         // Sprite for invisible box to detect when monster is approaching.
@@ -88,8 +89,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
         // Line
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/2 -40);
-        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/2 -40);
+        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/3 -38);
+        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/3 -38);
         yourline.path = pathToDraw;
         [yourline setStrokeColor:[UIColor grayColor]];
         yourline.zPosition = 0;
@@ -114,25 +115,17 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)addGrass {
     // Create sprite
     SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
-    int actualY = self.frame.size.height/2;
+    int actualY = grass.size.height/2;
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
     grass.position = CGPointMake(self.frame.size.width + grass.size.width/2, actualY);
-    
-    // Collision detection
-    /*monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
-    monster.physicsBody.dynamic = YES;
-    monster.physicsBody.categoryBitMask = monsterCategory;
-    monster.physicsBody.contactTestBitMask = playerCategory;
-    monster.physicsBody.collisionBitMask = 0;*/
-    
-    
+    grass.zPosition = 1;
     [self addChild:grass];
     
     // Determine speed of the monster
     int minDuration = 6.0;
-    int maxDuration = 10.0;
+    int maxDuration = 8.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -147,7 +140,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     // Create sprite
     SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdles"];
-    int actualY = self.frame.size.height/2;
+    int actualY = self.frame.size.height/3;
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
@@ -175,14 +168,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-monster.size.width/2, actualY) duration:actualDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
     
-    SKAction *winAction = [SKAction runBlock:^{
+    /*SKAction *winAction = [SKAction runBlock:^{
         if([self hurdles] > 30) {
             SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
             SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
                                                                      won:TRUE];
             [self.view presentScene:gameOverScene transition:reveal];
         }
-    }];
+    }];*/
     
 
     
@@ -196,6 +189,12 @@ static const uint32_t boxCategory            =  0x1 << 1;
     if (self.lastSpawnTimeInterval > 2) {
         self.lastSpawnTimeInterval = 0;
         [self addMonster];
+    }
+    
+    self.lastSpawnGrassTimeInterval +=timeSinceLast;
+    if(self.lastSpawnGrassTimeInterval>9) {
+        self.lastSpawnGrassTimeInterval = 0;
+        [self addGrass];
     }
 }
 
@@ -303,7 +302,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     int arcCenterX = self.player.frame.origin.x;
     CGPoint initialPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
     CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y + 150);
-    CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.frame.size.height/2);
+    CGPoint secondPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.frame.size.height/3);
     
     NSMutableArray *jumpPoints = [NSMutableArray arrayWithObjects:[NSValue valueWithCGPoint:initialPoint], [NSValue valueWithCGPoint:firstPoint], [NSValue valueWithCGPoint:secondPoint], nil];
     CGMutablePathRef path = CGPathCreateMutable();
@@ -371,7 +370,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         }
         else if(previousAction == 0 && secondLastAction == 0) {
             NSLog(@"I am standing");
-            self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/2);
+            self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/3);
         }
         else {
             NSLog(@"I am running/walking");

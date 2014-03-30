@@ -24,6 +24,7 @@
         self.name = @"calorieLabel";
         self.fontSize = 25;
         self.fontColor = [SKColor blackColor];
+        self.fontName = @"HelveticaNeue-UltraLight";
         self.text = @"0";
         _score = 0;
     }
