@@ -76,7 +76,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         
         // Sprite for invisible box to detect when monster is approaching.
         self.box = [SKSpriteNode spriteNodeWithImageNamed:@"invisible"];
-        self.box.position = CGPointMake(self.box.size.width/2 + 150, self.frame.size.height/2);
+        self.box.position = CGPointMake(self.box.size.width/2 + 150, self.frame.size.height/3);
         self.box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.box.size];
         self.box.physicsBody.dynamic = YES;
         self.box.physicsBody.categoryBitMask = boxCategory;
