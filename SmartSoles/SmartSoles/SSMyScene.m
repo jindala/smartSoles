@@ -161,10 +161,11 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [self addChild:grass];
     
     // Determine speed of the monster
-    int minDuration = 6.0;
-    int maxDuration = 8.0;
-    int rangeDuration = maxDuration - minDuration;
-    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    //int minDuration = 6.0;
+    //int maxDuration = 8.0;
+    //int rangeDuration = maxDuration - minDuration;
+    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    int actualDuration = 7.0;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-grass.size.width/2, actualY) duration:actualDuration];
@@ -229,7 +230,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnGrassTimeInterval +=timeSinceLast;
-    if(self.lastSpawnGrassTimeInterval>9) {
+    if(self.lastSpawnGrassTimeInterval>4) {
         self.lastSpawnGrassTimeInterval = 0;
         [self addGrass];
     }
