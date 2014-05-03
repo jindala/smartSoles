@@ -11,6 +11,7 @@
 		3F42343518E8C451007213B5 /* invisible.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343418E8C451007213B5 /* invisible.png */; };
 		3F42343718E8C482007213B5 /* woosh2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343618E8C482007213B5 /* woosh2.caf */; };
 		3F42343918E8C48C007213B5 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343818E8C48C007213B5 /* background-music-aac.caf */; };
+		3FC55A2D1915721D006DAA41 /* NinjaImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */; };
 		840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */; };
 		840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */; };
 		848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340318E699AD00CA1DD1 /* Foundation.framework */; };
@@ -86,6 +87,7 @@
 		3F42343418E8C451007213B5 /* invisible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invisible.png; sourceTree = "<group>"; };
 		3F42343618E8C482007213B5 /* woosh2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = woosh2.caf; sourceTree = "<group>"; };
 		3F42343818E8C48C007213B5 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
+		3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaImages.atlas; sourceTree = "<group>"; };
 		840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHistoryViewController.h; sourceTree = "<group>"; };
 		840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHistoryViewController.m; sourceTree = "<group>"; };
 		840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHistoryViewController.xib; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		84EE391A18E7D04A0094C355 /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
+				3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */,
 				84EE391B18E7D3040094C355 /* SSGameViewController.h */,
 				84EE391C18E7D3040094C355 /* SSGameViewController.m */,
 				84EE391D18E7D3040094C355 /* SSGameViewController.xib */,
@@ -525,6 +528,7 @@
 				84EE395218E8AF410094C355 /* grass@2x.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE395818E8B8470094C355 /* stats@2x.png in Resources */,
+				3FC55A2D1915721D006DAA41 /* NinjaImages.atlas in Resources */,
 				84EE395E18E8C0BE0094C355 /* logo@2x.png in Resources */,
 				84EE393018E7E5150094C355 /* splashScreenBackground.png in Resources */,
 				84EE392818E7D59C0094C355 /* background-music-aac.caf in Resources */,
@@ -740,6 +744,7 @@
 				INFOPLIST_FILE = "SmartSoles/SmartSoles-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -761,6 +766,7 @@
 				INFOPLIST_FILE = "SmartSoles/SmartSoles-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91D0D492-F58A-479C-8D1D-1C8FA6875498";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

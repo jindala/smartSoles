@@ -27,6 +27,12 @@
 
 
 @implementation SSMyScene
+{
+    
+    SKSpriteNode *_ninja;
+    NSArray *_ninjaWalkingFrames;
+    
+}
 
 static const uint32_t playerCategory         =  0x1 << 0;
 static const uint32_t monsterCategory        =  0x1 << 2;
@@ -61,6 +67,25 @@ static const uint32_t boxCategory            =  0x1 << 1;
         sn.name = @"BACKGROUND";
         sn.zPosition = -1;
         [self addChild:sn];
+        
+         // Ninja animation -- need to fix positioning TODO
+         NSMutableArray *walkFrames = [NSMutableArray array];
+         SKTextureAtlas *ninjaAnimatedAtlas = [SKTextureAtlas atlasNamed:@"NinjaImages"];
+         
+         int numImages = ninjaAnimatedAtlas.textureNames.count;
+         for (int i = 1; i <= numImages; i++) {
+         NSString *textureName = [NSString stringWithFormat:@"ninja%d", i];
+         SKTexture *temp = [ninjaAnimatedAtlas textureNamed:textureName];
+         [walkFrames addObject:temp];
+         }
+         _ninjaWalkingFrames = walkFrames;
+         
+         
+         SKTexture *temp = _ninjaWalkingFrames[0];
+         _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
+         _ninja.position = CGPointMake(self.player.size.width/2, self.frame.size.height/3);
+         [self addChild:_ninja];
+         [self walkingNinja];
         
         // Player
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"ninja"];
@@ -108,8 +133,20 @@ static const uint32_t boxCategory            =  0x1 << 1;
         utterance.preUtteranceDelay = 0.1;
         [synthesizer speakUtterance:utterance];
         
+
     }
     return self;
+}
+
+-(void)walkingNinja
+{
+    // make ninja walk
+    [_ninja runAction:[SKAction repeatActionForever:
+                      [SKAction animateWithTextures:_ninjaWalkingFrames
+                                       timePerFrame:0.1f
+                                             resize:NO
+                                            restore:YES]] withKey:@"walkingInPlaceNinja"];
+    return;
 }
 
 -(void)addGrass {
