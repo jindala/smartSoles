@@ -68,7 +68,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         sn.zPosition = -1;
         [self addChild:sn];
         
-         // Ninja animation -- need to fix positioning TODO
+         // Ninja animation -- need to fix size TODO
          NSMutableArray *walkFrames = [NSMutableArray array];
          SKTextureAtlas *ninjaAnimatedAtlas = [SKTextureAtlas atlasNamed:@"NinjaImages"];
          
@@ -83,10 +83,11 @@ static const uint32_t boxCategory            =  0x1 << 1;
          
          SKTexture *temp = _ninjaWalkingFrames[0];
          _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-         _ninja.position = CGPointMake(self.player.size.width/2, self.frame.size.height/3);
+         _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
          [self addChild:_ninja];
          [self walkingNinja];
         
+        /*
         // Player
         self.player = [SKSpriteNode spriteNodeWithImageNamed:@"ninja"];
         self.player.position = CGPointMake(self.player.size.width/2, self.frame.size.height/3);
@@ -98,7 +99,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.player.physicsBody.usesPreciseCollisionDetection = YES;
         self.player.zPosition = .5;
         [self addChild:self.player];
-        
+        */
+         
         // Sprite for invisible box to detect when monster is approaching.
         self.box = [SKSpriteNode spriteNodeWithImageNamed:@"invisible"];
         self.box.position = CGPointMake(self.box.size.width/2 + 150, self.frame.size.height/3);
