@@ -71,7 +71,12 @@ static const uint32_t boxCategory            =  0x1 << 1;
         [self addChild:sn];
         
         // need to move this to another method that listens for input from the soles... TODO
-        [self setUpWalkingNinjaSprite];
+        //[self setUpWalkingNinjaSprite];
+        
+        _ninja = [SKSpriteNode spriteNodeWithTexture:
+                  [SKTexture textureWithImageNamed:@"ninja1"]];
+        _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+        [self addChild:_ninja];
         
         /*
         // Player
@@ -124,6 +129,29 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
     }
     return self;
+}
+
+// call this method and pass in two parameters indicating which feet sensors
+// are activated. Pass in booleans
+-(void) leftFootDown:(BOOL)l rightFootDown:(BOOL)r
+{
+    
+    NSLog(@"Entering leftFootDown:rightFootDown method");
+    
+    if ( l && r ) {
+        // both left and right feet are down; show ninja as standing - ninja1.png
+        _ninja.texture = [SKTexture textureWithImageNamed:@"ninja1"];
+    } else if ( l && !r ) {
+        // left foot down, right foot in air; show ninja's right foot raised - ninja2.png
+        _ninja.texture = [SKTexture textureWithImageNamed:@"ninja2"];
+    } else if ( !l && r ) {
+        // left foot in air, right foot down; show ninja's left foot raised - ninja3.png
+        _ninja.texture = [SKTexture textureWithImageNamed:@"ninja3"];
+    } else {
+        // both feet in air - trigger jump sequence
+        [self setUpJumpingNinjaSprite];
+    }
+    
 }
 
 -(void)setUpWalkingNinjaSprite
