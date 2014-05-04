@@ -83,8 +83,16 @@ static const uint32_t boxCategory            =  0x1 << 1;
         
         _ninja = [SKSpriteNode spriteNodeWithTexture:
                   [SKTexture textureWithImageNamed:@"ninja1"]];
-        _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+        _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
+        _ninja.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ninja.size];
+        _ninja.physicsBody.dynamic = YES;
+        _ninja.physicsBody.categoryBitMask = playerCategory;
+        _ninja.physicsBody.contactTestBitMask = monsterCategory;
+        _ninja.physicsBody.collisionBitMask = 0;
+        _ninja.physicsBody.usesPreciseCollisionDetection = YES;
+        _ninja.zPosition = 0;
         [self addChild:_ninja];
+        //[self setUpStandingNinjaSprite];
         
         /*
         // Player
@@ -109,22 +117,24 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.box.physicsBody.contactTestBitMask = monsterCategory;
         self.box.physicsBody.collisionBitMask = 0;
         self.box.physicsBody.usesPreciseCollisionDetection = YES;
-        self.box.zPosition = 1;
+        self.box.zPosition = 0;
         [self addChild:self.box];
+        
         
         // Line
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
-        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/3 -38);
-        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/3 -38);
+        CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/3 -90); // used to be -38
+        CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/3 -90); // used to be -38
         yourline.path = pathToDraw;
-        [yourline setStrokeColor:[UIColor grayColor]];
+        [yourline setStrokeColor:[UIColor clearColor]];
         yourline.zPosition = 0;
         [self addChild:yourline];
         
         self.physicsWorld.gravity = CGVectorMake(0,0);
         self.physicsWorld.contactDelegate = self;
         
+         
         // Computer-generated voice to say "Run."
         
         AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
@@ -160,6 +170,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
 }
 
+-(void)setUpStandingNinjaSprite
+{
+    _ninja = [SKSpriteNode spriteNodeWithTexture:
+              [SKTexture textureWithImageNamed:@"ninja1"]];
+    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
+    [self addChild:_ninja];
+}
+
 -(void)setUpWalkingNinjaSprite
 {
     // Ninja walk animation
@@ -177,13 +195,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     SKTexture *temp = _ninjaWalkingFrames[0];
     _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
     [self addChild:_ninja];
     [self walkingNinja];
 }
 
 -(void)setUpJumpingNinjaSprite
 {
+    [_ninja runAction: [SKAction removeFromParent] withKey:@"removeNinja"];
     // Ninja jump animation
     NSMutableArray *jumpUpFrames = [NSMutableArray array];
     NSMutableArray *jumpDownFrames = [NSMutableArray array];
@@ -214,7 +233,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     SKTexture *temp = _ninjaJumpUpFrames[0];
     // do we need to use different node for jumping ninja? TODO
     _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
     [self addChild:_ninja];
     [self jumpingNinja];
     
@@ -251,7 +270,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     SKAction *groupJumpUp = [SKAction group:@[prepJump, animateJumpUp, moveUp]];
     SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown, landing]];
-    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, removeNode]];
+    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown/*, removeNode*/]];
     // make ninja jump
     [_ninja runAction: sequence withKey:@"jumpingNinja"];
     
@@ -261,7 +280,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)addGrass {
     // Create sprite
     SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
-    int actualY = grass.size.height/2;
+    int actualY = grass.size.height/4;
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
@@ -337,7 +356,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     // Create sprite
     SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdles"];
-    int actualY = self.frame.size.height/3;
+    int actualY = self.frame.size.height/3 -50;
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
@@ -349,6 +368,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     monster.physicsBody.categoryBitMask = monsterCategory;
     monster.physicsBody.contactTestBitMask = playerCategory | boxCategory;
     monster.physicsBody.collisionBitMask = 0;
+    monster.zPosition = 0;
 
     
     
@@ -427,7 +447,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
             SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
                                                                        won:NO];
             [self.view presentScene:gameOverScene transition:reveal];
-    }];
+    }];*/
     
     // Computer-generated voice to say "Ouch."
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
@@ -438,7 +458,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
     
-    [player runAction:loseAction];*/
+    //[player runAction:loseAction];
 }
 
 - (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
@@ -488,7 +508,6 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
     
     [self setUpJumpingNinjaSprite];
-    //[self setUpWalkingNinjaSprite];
     
     /*
     CGMutablePathRef fallPath = [self createFallPath];
