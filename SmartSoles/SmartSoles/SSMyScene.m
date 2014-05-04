@@ -18,6 +18,8 @@
 @property (nonatomic) NSTimeInterval lastSpawnTimeInterval;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) NSTimeInterval lastSpawnGrassTimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnTemple1TimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnTemple2TimeInterval;
 @property (nonatomic) SKSpriteNode *calorieCounter;
 @property (nonatomic) float totalCaloriesBurnt;
 @property (nonatomic) NSMutableArray *lastActionArray;
@@ -63,14 +65,20 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.lastActionArray = [[NSMutableArray alloc] init];
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
-        // Background
+        // Background (mountains)
         SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"BGgame"];
         sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         sn.name = @"BACKGROUND";
-        sn.zPosition = -1;
+        sn.zPosition = -3;
         [self addChild:sn];
         
-        // need to move this to another method that listens for input from the soles... TODO
+        [self addGrass];
+        [self addTemple1];
+        [self addTemple2];
+
+        
+        
+    
         //[self setUpWalkingNinjaSprite];
         
         _ninja = [SKSpriteNode spriteNodeWithTexture:
@@ -135,8 +143,6 @@ static const uint32_t boxCategory            =  0x1 << 1;
 // are activated. Pass in booleans
 -(void) leftFootDown:(BOOL)l rightFootDown:(BOOL)r
 {
-    
-    NSLog(@"Entering leftFootDown:rightFootDown method");
     
     if ( l && r ) {
         // both left and right feet are down; show ninja as standing - ninja1.png
@@ -277,6 +283,56 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [grass runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
 }
 
+-(void)addTemple1 {
+    // Background (temple layer 1)
+    SKSpriteNode *temple1 = [SKSpriteNode spriteNodeWithImageNamed:@"templeLayer1"];
+    temple1.position = CGPointMake(self.frame.size.width + temple1.size.width/2, CGRectGetMidY(self.frame));
+    temple1.name = @"TEMPLE1";
+    temple1.zPosition = -1;
+    [self addChild:temple1];
+    
+    
+    // Determine speed of the monster
+    //int minDuration = 6.0;
+    //int maxDuration = 8.0;
+    //int rangeDuration = maxDuration - minDuration;
+    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    int actualDuration = 14.0;
+    
+    // Create the actions
+    SKAction * actionMove = [SKAction moveTo:
+                             CGPointMake(-temple1.size.width/2, CGRectGetMidY(self.frame))
+                                    duration:actualDuration];
+    SKAction * actionMoveDone = [SKAction removeFromParent];
+    
+    [temple1 runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+}
+
+-(void)addTemple2 {
+    // Background (temple layer 2)
+    SKSpriteNode *temple2 = [SKSpriteNode spriteNodeWithImageNamed:@"templeLayer2"];
+    temple2.position = CGPointMake(self.frame.size.width + temple2.size.width/2, CGRectGetMidY(self.frame));
+    temple2.name = @"TEMPLE2";
+    temple2.zPosition = -2;
+    [self addChild:temple2];
+    
+    
+    // Determine speed of the monster
+    //int minDuration = 6.0;
+    //int maxDuration = 8.0;
+    //int rangeDuration = maxDuration - minDuration;
+    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    int actualDuration = 16.0;
+    
+    // Create the actions
+    SKAction * actionMove = [SKAction moveTo:
+                             CGPointMake(-temple2.size.width/2, CGRectGetMidY(self.frame))
+                                    duration:actualDuration];
+    SKAction * actionMoveDone = [SKAction removeFromParent];
+    
+    [temple2 runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+}
+
 - (void)addMonster {
     
     // Create sprite
@@ -336,6 +392,18 @@ static const uint32_t boxCategory            =  0x1 << 1;
     if(self.lastSpawnGrassTimeInterval>4) {
         self.lastSpawnGrassTimeInterval = 0;
         [self addGrass];
+    }
+    
+    self.lastSpawnTemple1TimeInterval +=timeSinceLast;
+    if(self.lastSpawnTemple1TimeInterval>12) {
+        self.lastSpawnTemple1TimeInterval = 0;
+        [self addTemple1];
+    }
+    
+    self.lastSpawnTemple2TimeInterval +=timeSinceLast;
+    if(self.lastSpawnTemple2TimeInterval>14) {
+        self.lastSpawnTemple2TimeInterval = 0;
+        [self addTemple2];
     }
 }
 
