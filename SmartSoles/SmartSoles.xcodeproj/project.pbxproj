@@ -12,6 +12,7 @@
 		3F42343718E8C482007213B5 /* woosh2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343618E8C482007213B5 /* woosh2.caf */; };
 		3F42343918E8C48C007213B5 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343818E8C48C007213B5 /* background-music-aac.caf */; };
 		3FC55A2D1915721D006DAA41 /* NinjaImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */; };
+		3FC55A2F1915BDB0006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A2E1915BDB0006DAA41 /* NinjaJumpImages.atlas */; };
 		840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */; };
 		840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */; };
 		848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340318E699AD00CA1DD1 /* Foundation.framework */; };
@@ -88,6 +89,7 @@
 		3F42343618E8C482007213B5 /* woosh2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = woosh2.caf; sourceTree = "<group>"; };
 		3F42343818E8C48C007213B5 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaImages.atlas; sourceTree = "<group>"; };
+		3FC55A2E1915BDB0006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
 		840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHistoryViewController.h; sourceTree = "<group>"; };
 		840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHistoryViewController.m; sourceTree = "<group>"; };
 		840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHistoryViewController.xib; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 		84EE391A18E7D04A0094C355 /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
+				3FC55A2E1915BDB0006DAA41 /* NinjaJumpImages.atlas */,
 				3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */,
 				84EE391B18E7D3040094C355 /* SSGameViewController.h */,
 				84EE391C18E7D3040094C355 /* SSGameViewController.m */,
@@ -509,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84EE392E18E7E24A0094C355 /* welcomeScreen1.png in Resources */,
+				3FC55A2F1915BDB0006DAA41 /* NinjaJumpImages.atlas in Resources */,
 				84EE394018E8793D0094C355 /* friendsScreen1.png in Resources */,
 				84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */,
 				84EE395418E8B82D0094C355 /* challenge@2x.png in Resources */,

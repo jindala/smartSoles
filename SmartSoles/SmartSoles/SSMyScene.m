@@ -31,6 +31,8 @@
     
     SKSpriteNode *_ninja;
     NSArray *_ninjaWalkingFrames;
+    NSArray *_ninjaJumpUpFrames;
+    NSArray *_ninjaJumpDownFrames;
     
 }
 
@@ -68,24 +70,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
         sn.zPosition = -1;
         [self addChild:sn];
         
-         // Ninja animation -- need to fix size TODO
-         NSMutableArray *walkFrames = [NSMutableArray array];
-         SKTextureAtlas *ninjaAnimatedAtlas = [SKTextureAtlas atlasNamed:@"NinjaImages"];
-         
-         int numImages = ninjaAnimatedAtlas.textureNames.count;
-         for (int i = 1; i <= numImages; i++) {
-         NSString *textureName = [NSString stringWithFormat:@"ninja%d", i];
-         SKTexture *temp = [ninjaAnimatedAtlas textureNamed:textureName];
-         [walkFrames addObject:temp];
-         }
-         _ninjaWalkingFrames = walkFrames;
-         
-         
-         SKTexture *temp = _ninjaWalkingFrames[0];
-         _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-         _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
-         [self addChild:_ninja];
-         [self walkingNinja];
+        // need to move this to another method that listens for input from the soles... TODO
+        [self setUpWalkingNinjaSprite];
         
         /*
         // Player
@@ -140,6 +126,66 @@ static const uint32_t boxCategory            =  0x1 << 1;
     return self;
 }
 
+-(void)setUpWalkingNinjaSprite
+{
+    // Ninja walk animation
+    NSMutableArray *walkFrames = [NSMutableArray array];
+    SKTextureAtlas *ninjaAnimatedAtlas = [SKTextureAtlas atlasNamed:@"NinjaImages"];
+    
+    int numImages = ninjaAnimatedAtlas.textureNames.count;
+    for (int i = 1; i <= numImages; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"ninja%d", i];
+        SKTexture *temp = [ninjaAnimatedAtlas textureNamed:textureName];
+        [walkFrames addObject:temp];
+    }
+    _ninjaWalkingFrames = walkFrames;
+    
+    
+    SKTexture *temp = _ninjaWalkingFrames[0];
+    _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
+    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+    [self addChild:_ninja];
+    [self walkingNinja];
+}
+
+-(void)setUpJumpingNinjaSprite
+{
+    // Ninja jump animation
+    NSMutableArray *jumpUpFrames = [NSMutableArray array];
+    NSMutableArray *jumpDownFrames = [NSMutableArray array];
+    SKTextureAtlas *ninjaJumpAnimatedAtlas = [SKTextureAtlas atlasNamed:@"NinjaJumpImages"];
+    
+    /*
+    int numImages = ninjaJumpAnimatedAtlas.textureNames.count;
+    for (int i = 1; i <= numImages; i++) {
+        NSString *textureName = [NSString stringWithFormat:@"ninjaJump%d", i];
+        SKTexture *temp = [ninjaJumpAnimatedAtlas textureNamed:textureName];
+        [jumpFrames addObject:temp];
+    }
+     */
+
+    [jumpUpFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
+                             [NSString stringWithFormat:@"ninjaJump1"]]];
+    [jumpUpFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
+                             [NSString stringWithFormat:@"ninjaJump2"]]];
+    [jumpDownFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
+                            [NSString stringWithFormat:@"ninjaJump3"]]];
+    [jumpDownFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
+                             [NSString stringWithFormat:@"ninjaJump1"]]];
+    
+    _ninjaJumpUpFrames = jumpUpFrames;
+    _ninjaJumpDownFrames = jumpDownFrames;
+    
+    
+    SKTexture *temp = _ninjaJumpUpFrames[0];
+    // do we need to use different node for jumping ninja? TODO
+    _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
+    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3);
+    [self addChild:_ninja];
+    [self jumpingNinja];
+    
+}
+
 -(void)walkingNinja
 {
     // make ninja walk
@@ -148,6 +194,33 @@ static const uint32_t boxCategory            =  0x1 << 1;
                                        timePerFrame:0.1f
                                              resize:NO
                                             restore:YES]] withKey:@"walkingInPlaceNinja"];
+    return;
+}
+
+-(void)jumpingNinja
+{
+    
+    SKAction *prepJump = [SKAction moveByX:0 y:30.0 duration:0.3];
+    SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
+                                        timePerFrame:1.4/3
+                                              resize:NO
+                                              restore:YES];
+    SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
+                                               timePerFrame:1.4/3
+                                                     resize:NO
+                                                    restore:YES];
+    
+    SKAction *moveUp = [SKAction moveByX:0 y:70.0 duration:0.7];
+    SKAction *moveDown = [SKAction moveByX:0 y:-70.0 duration:0.7];
+    SKAction *landing = [SKAction moveByX:0 y:-30.0 duration:0.3];
+    SKAction *removeNode = [SKAction removeFromParent];
+    
+    SKAction *groupJumpUp = [SKAction group:@[prepJump, animateJumpUp, moveUp]];
+    SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown, landing]];
+    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, removeNode]];
+    // make ninja jump
+    [_ninja runAction: sequence withKey:@"jumpingNinja"];
+    
     return;
 }
 
@@ -315,7 +388,12 @@ static const uint32_t boxCategory            =  0x1 << 1;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    
+    //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
+    
+    [self setUpJumpingNinjaSprite];
+    //[self setUpWalkingNinjaSprite];
+    
     /*
     CGMutablePathRef fallPath = [self createFallPath];
     
@@ -331,7 +409,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     CGContextStrokePath(context);
      */
     
-    [self.player runAction:followTrack];
+    //[self.player runAction:followTrack withKey:@"jumping"];
     // JUMP SOUND
     [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
     
@@ -339,6 +417,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 }
 
 -(CGMutablePathRef) createJumpPath {
+    
     int arcCenterX = self.player.frame.origin.x;
     CGPoint initialPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y+self.player.frame.size.height/2);
     CGPoint firstPoint = CGPointMake(arcCenterX+self.player.frame.size.width/2, self.player.frame.origin.y + 150);
