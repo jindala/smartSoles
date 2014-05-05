@@ -12,9 +12,10 @@
 		3F42343718E8C482007213B5 /* woosh2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343618E8C482007213B5 /* woosh2.caf */; };
 		3F42343918E8C48C007213B5 /* background-music-aac.caf in Resources */ = {isa = PBXBuildFile; fileRef = 3F42343818E8C48C007213B5 /* background-music-aac.caf */; };
 		3FC55A2D1915721D006DAA41 /* NinjaImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */; };
-		3FC55A3219160CE6006DAA41 /* templeLayer1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3019160CE6006DAA41 /* templeLayer1@2x.png */; };
-		3FC55A3319160CE6006DAA41 /* templeLayer2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3119160CE6006DAA41 /* templeLayer2@2x.png */; };
-		3FC55A351916EA3C006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A341916EA3C006DAA41 /* NinjaJumpImages.atlas */; };
+		3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3619171404006DAA41 /* templeLayer1@2x.png */; };
+		3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3719171404006DAA41 /* templeLayer2@2x.png */; };
+		3FC55A3B19171732006DAA41 /* grass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3A19171732006DAA41 /* grass@2x.png */; };
+		3FC55A3D19171A6C006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3C19171A6C006DAA41 /* NinjaJumpImages.atlas */; };
 		840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */; };
 		840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */; };
 		848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340318E699AD00CA1DD1 /* Foundation.framework */; };
@@ -64,7 +65,6 @@
 		84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394B18E8A5000094C355 /* hurdles@2x.png */; };
 		84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394D18E8A50B0094C355 /* ninja@2x.png */; };
 		84EE395018E8AF070094C355 /* BGgame@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE394F18E8AF070094C355 /* BGgame@2x.png */; };
-		84EE395218E8AF410094C355 /* grass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395118E8AF410094C355 /* grass@2x.png */; };
 		84EE395418E8B82D0094C355 /* challenge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395318E8B82D0094C355 /* challenge@2x.png */; };
 		84EE395618E8B83D0094C355 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395518E8B83D0094C355 /* play@2x.png */; };
 		84EE395818E8B8470094C355 /* stats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EE395718E8B8470094C355 /* stats@2x.png */; };
@@ -91,9 +91,10 @@
 		3F42343618E8C482007213B5 /* woosh2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = woosh2.caf; sourceTree = "<group>"; };
 		3F42343818E8C48C007213B5 /* background-music-aac.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "background-music-aac.caf"; sourceTree = "<group>"; };
 		3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaImages.atlas; sourceTree = "<group>"; };
-		3FC55A3019160CE6006DAA41 /* templeLayer1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer1@2x.png"; sourceTree = "<group>"; };
-		3FC55A3119160CE6006DAA41 /* templeLayer2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer2@2x.png"; sourceTree = "<group>"; };
-		3FC55A341916EA3C006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
+		3FC55A3619171404006DAA41 /* templeLayer1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer1@2x.png"; sourceTree = "<group>"; };
+		3FC55A3719171404006DAA41 /* templeLayer2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer2@2x.png"; sourceTree = "<group>"; };
+		3FC55A3A19171732006DAA41 /* grass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass@2x.png"; sourceTree = "<group>"; };
+		3FC55A3C19171A6C006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
 		840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHistoryViewController.h; sourceTree = "<group>"; };
 		840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHistoryViewController.m; sourceTree = "<group>"; };
 		840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHistoryViewController.xib; sourceTree = "<group>"; };
@@ -162,7 +163,6 @@
 		84EE394B18E8A5000094C355 /* hurdles@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hurdles@2x.png"; sourceTree = "<group>"; };
 		84EE394D18E8A50B0094C355 /* ninja@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ninja@2x.png"; sourceTree = "<group>"; };
 		84EE394F18E8AF070094C355 /* BGgame@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BGgame@2x.png"; sourceTree = "<group>"; };
-		84EE395118E8AF410094C355 /* grass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass@2x.png"; sourceTree = "<group>"; };
 		84EE395318E8B82D0094C355 /* challenge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "challenge@2x.png"; sourceTree = "<group>"; };
 		84EE395518E8B83D0094C355 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
 		84EE395718E8B8470094C355 /* stats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stats@2x.png"; sourceTree = "<group>"; };
@@ -274,8 +274,9 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3FC55A3019160CE6006DAA41 /* templeLayer1@2x.png */,
-				3FC55A3119160CE6006DAA41 /* templeLayer2@2x.png */,
+				3FC55A3A19171732006DAA41 /* grass@2x.png */,
+				3FC55A3619171404006DAA41 /* templeLayer1@2x.png */,
+				3FC55A3719171404006DAA41 /* templeLayer2@2x.png */,
 				84EE395F18E8C70F0094C355 /* AppIcon.png */,
 				84EE395D18E8C0BE0094C355 /* logo@2x.png */,
 				3F42343818E8C48C007213B5 /* background-music-aac.caf */,
@@ -286,7 +287,6 @@
 				84EE395718E8B8470094C355 /* stats@2x.png */,
 				84EE395518E8B83D0094C355 /* play@2x.png */,
 				84EE395318E8B82D0094C355 /* challenge@2x.png */,
-				84EE395118E8AF410094C355 /* grass@2x.png */,
 				84EE394F18E8AF070094C355 /* BGgame@2x.png */,
 				84EE393F18E8793D0094C355 /* friendsScreen1.png */,
 				84EE394318E8797D0094C355 /* welcomeScreen.png */,
@@ -376,7 +376,7 @@
 		84EE391A18E7D04A0094C355 /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
-				3FC55A341916EA3C006DAA41 /* NinjaJumpImages.atlas */,
+				3FC55A3C19171A6C006DAA41 /* NinjaJumpImages.atlas */,
 				3FC55A2C1915721D006DAA41 /* NinjaImages.atlas */,
 				84EE391B18E7D3040094C355 /* SSGameViewController.h */,
 				84EE391C18E7D3040094C355 /* SSGameViewController.m */,
@@ -530,13 +530,13 @@
 				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
 				84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */,
 				84EE396018E8C70F0094C355 /* AppIcon.png in Resources */,
+				3FC55A3B19171732006DAA41 /* grass@2x.png in Resources */,
 				84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */,
 				84EE394218E879690094C355 /* splashScreen1.png in Resources */,
-				3FC55A3219160CE6006DAA41 /* templeLayer1@2x.png in Resources */,
-				3FC55A3319160CE6006DAA41 /* templeLayer2@2x.png in Resources */,
 				84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */,
+				3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */,
+				3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */,
 				84EE394C18E8A5000094C355 /* hurdles@2x.png in Resources */,
-				84EE395218E8AF410094C355 /* grass@2x.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE395818E8B8470094C355 /* stats@2x.png in Resources */,
 				3FC55A2D1915721D006DAA41 /* NinjaImages.atlas in Resources */,
@@ -550,7 +550,7 @@
 				84EE395C18E8BA630094C355 /* welcome.png in Resources */,
 				848C341618E699AD00CA1DD1 /* Images.xcassets in Resources */,
 				84EE395618E8B83D0094C355 /* play@2x.png in Resources */,
-				3FC55A351916EA3C006DAA41 /* NinjaJumpImages.atlas in Resources */,
+				3FC55A3D19171A6C006DAA41 /* NinjaJumpImages.atlas in Resources */,
 				84EE393818E878FB0094C355 /* avatars_alex.png in Resources */,
 				84EE393B18E879100094C355 /* avatars_brit copy.png in Resources */,
 				84EE38A518E750CE0094C355 /* SSConnectViewController.xib in Resources */,

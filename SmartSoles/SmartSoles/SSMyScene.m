@@ -75,12 +75,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
         [self addGrass];
         [self addTemple1];
         [self addTemple2];
-
         
-        
-    
-        //[self setUpWalkingNinjaSprite];
-        
+        /* FOR COLLISION -- not working yet. TODO.
         _ninja = [SKSpriteNode spriteNodeWithTexture:
                   [SKTexture textureWithImageNamed:@"ninja1"]];
         _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
@@ -92,6 +88,10 @@ static const uint32_t boxCategory            =  0x1 << 1;
         _ninja.physicsBody.usesPreciseCollisionDetection = YES;
         _ninja.zPosition = 0;
         [self addChild:_ninja];
+         */
+        
+        // comment out when we are able to get device to make ninja walk
+        [self setUpWalkingNinjaSprite];
         //[self setUpStandingNinjaSprite];
         
         /*
@@ -280,7 +280,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)addGrass {
     // Create sprite
     SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
-    int actualY = grass.size.height/4;
+    int actualY = grass.size.height/4 + 20;
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
@@ -305,7 +305,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)addTemple1 {
     // Background (temple layer 1)
     SKSpriteNode *temple1 = [SKSpriteNode spriteNodeWithImageNamed:@"templeLayer1"];
-    temple1.position = CGPointMake(self.frame.size.width + temple1.size.width/2, CGRectGetMidY(self.frame));
+    temple1.position = CGPointMake(self.frame.size.width + temple1.size.width/2, self.frame.size.height/3 +50 );
     temple1.name = @"TEMPLE1";
     temple1.zPosition = -1;
     [self addChild:temple1];
@@ -320,7 +320,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:
-                             CGPointMake(-temple1.size.width/2, CGRectGetMidY(self.frame))
+                             CGPointMake(-temple1.size.width/2, self.frame.size.height/3 +50)
                                     duration:actualDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
     
@@ -330,7 +330,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)addTemple2 {
     // Background (temple layer 2)
     SKSpriteNode *temple2 = [SKSpriteNode spriteNodeWithImageNamed:@"templeLayer2"];
-    temple2.position = CGPointMake(self.frame.size.width + temple2.size.width/2, CGRectGetMidY(self.frame));
+    temple2.position = CGPointMake(self.frame.size.width + temple2.size.width/2, self.frame.size.height/3 +50);
     temple2.name = @"TEMPLE2";
     temple2.zPosition = -2;
     [self addChild:temple2];
@@ -345,7 +345,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:
-                             CGPointMake(-temple2.size.width/2, CGRectGetMidY(self.frame))
+                             CGPointMake(-temple2.size.width/2, self.frame.size.height/3 +50)
                                     duration:actualDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
     
@@ -409,19 +409,19 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnGrassTimeInterval +=timeSinceLast;
-    if(self.lastSpawnGrassTimeInterval>4) {
+    if(self.lastSpawnGrassTimeInterval>2) {
         self.lastSpawnGrassTimeInterval = 0;
         [self addGrass];
     }
     
     self.lastSpawnTemple1TimeInterval +=timeSinceLast;
-    if(self.lastSpawnTemple1TimeInterval>12) {
+    if(self.lastSpawnTemple1TimeInterval>8) {
         self.lastSpawnTemple1TimeInterval = 0;
         [self addTemple1];
     }
     
     self.lastSpawnTemple2TimeInterval +=timeSinceLast;
-    if(self.lastSpawnTemple2TimeInterval>14) {
+    if(self.lastSpawnTemple2TimeInterval>10) {
         self.lastSpawnTemple2TimeInterval = 0;
         [self addTemple2];
     }
@@ -449,6 +449,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
             [self.view presentScene:gameOverScene transition:reveal];
     }];*/
     
+    /*
     // Computer-generated voice to say "Ouch."
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Ouch"];
@@ -457,7 +458,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
-    
+    */
     //[player runAction:loseAction];
 }
 

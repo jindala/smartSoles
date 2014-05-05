@@ -28,9 +28,15 @@
     return self;
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.backgroundMusicPlayer stop];
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    
     
     // BACKGROUND MUSIC
     NSError *error;
@@ -49,8 +55,8 @@
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
-        skView.showsFPS = YES;
-        skView.showsNodeCount = YES;
+        skView.showsFPS = NO;
+        skView.showsNodeCount = NO;
         
         // Create and configure the scene.
         SKScene * scene = [SSMyScene sceneWithSize:skView.bounds.size];
@@ -81,6 +87,7 @@
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+    
 }
 
 
