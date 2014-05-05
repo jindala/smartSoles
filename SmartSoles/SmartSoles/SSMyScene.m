@@ -245,7 +245,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [_ninja runAction:[SKAction repeatActionForever:
                       [SKAction animateWithTextures:_ninjaWalkingFrames
                                        timePerFrame:0.1f
-                                             resize:NO
+                                             resize:YES
                                             restore:YES]] withKey:@"walkingInPlaceNinja"];
     return;
 }
@@ -253,19 +253,19 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)jumpingNinja
 {
     
-    SKAction *prepJump = [SKAction moveByX:0 y:30.0 duration:0.3];
+    SKAction *prepJump = [SKAction moveByX:0 y:60.0 duration:0.3];
     SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
                                         timePerFrame:1.4/3
-                                              resize:NO
+                                              resize:YES
                                               restore:YES];
     SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
                                                timePerFrame:1.4/3
-                                                     resize:NO
+                                                     resize:YES
                                                     restore:YES];
     
-    SKAction *moveUp = [SKAction moveByX:0 y:70.0 duration:0.7];
-    SKAction *moveDown = [SKAction moveByX:0 y:-70.0 duration:0.7];
-    SKAction *landing = [SKAction moveByX:0 y:-30.0 duration:0.3];
+    SKAction *moveUp = [SKAction moveByX:0 y:140.0 duration:0.7];
+    SKAction *moveDown = [SKAction moveByX:0 y:-140.0 duration:0.7];
+    SKAction *landing = [SKAction moveByX:0 y:-60.0 duration:0.3];
     SKAction *removeNode = [SKAction removeFromParent];
     
     SKAction *groupJumpUp = [SKAction group:@[prepJump, animateJumpUp, moveUp]];
@@ -341,7 +341,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //int maxDuration = 8.0;
     //int rangeDuration = maxDuration - minDuration;
     //int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    int actualDuration = 16.0;
+    int actualDuration = 20.0;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:
@@ -355,7 +355,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 - (void)addMonster {
     
     // Create sprite
-    SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdles"];
+    SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdle"];
     int actualY = self.frame.size.height/3 -50;
     
     // Create the monster slightly off-screen along the right edge,
@@ -376,8 +376,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [self addChild:monster];
     
     // Determine speed of the monster
-    int minDuration = 6.0;
-    int maxDuration = 8.0;
+    int minDuration = 2.0;
+    int maxDuration = 4.0;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -402,8 +402,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
     
+    // Determine speed of the monster
+    int minDuration = 2;
+    int maxDuration = 7;
+    int rangeDuration = maxDuration - minDuration;
+    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    
     self.lastSpawnTimeInterval += timeSinceLast;
-    if (self.lastSpawnTimeInterval > 7) {
+    if (self.lastSpawnTimeInterval > actualDuration) {
         self.lastSpawnTimeInterval = 0;
         [self addMonster];
     }
@@ -421,7 +427,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnTemple2TimeInterval +=timeSinceLast;
-    if(self.lastSpawnTemple2TimeInterval>10) {
+    if(self.lastSpawnTemple2TimeInterval>14) {
         self.lastSpawnTemple2TimeInterval = 0;
         [self addTemple2];
     }
