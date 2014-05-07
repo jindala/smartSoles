@@ -20,7 +20,9 @@
 @property (nonatomic) NSTimeInterval lastSpawnGrassTimeInterval;
 @property (nonatomic) NSTimeInterval lastSpawnTemple1TimeInterval;
 @property (nonatomic) NSTimeInterval lastSpawnTemple2TimeInterval;
+@property (nonatomic) NSTimeInterval lastSpawnMountainTimeInterval;
 @property (nonatomic) SKSpriteNode *calorieCounter;
+@property (nonatomic) BOOL startOfGame;
 @property (nonatomic) float totalCaloriesBurnt;
 @property (nonatomic) NSMutableArray *lastActionArray;
 @property (nonatomic) int hurdles;
@@ -61,20 +63,22 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         
+        self.startOfGame = YES;
         self.totalCaloriesBurnt = 0;
         self.lastActionArray = [[NSMutableArray alloc] init];
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
         // Background (mountains)
-        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"BGgame"];
+        SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
         sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         sn.name = @"BACKGROUND";
-        sn.zPosition = -3;
+        sn.zPosition = -4;
         [self addChild:sn];
         
         [self addGrass];
         [self addTemple1];
         [self addTemple2];
+        [self addMountains];
         
         /* FOR COLLISION -- not working yet. TODO.
         _ninja = [SKSpriteNode spriteNodeWithTexture:
@@ -279,12 +283,21 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 -(void)addGrass {
     // Create sprite
-    SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass"];
+    SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass2"];
     int actualY = grass.size.height/4 + 20;
+    int actualX = grass.size.width/2 + 70;
+    int actualDuration = 6.0;
+    
+    if ( !self.startOfGame ) {
+        actualX = self.frame.size.width + grass.size.width/2;
+        actualDuration = 9.0;
+    }
+        
+    
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
-    grass.position = CGPointMake(self.frame.size.width + grass.size.width/2, actualY);
+    grass.position = CGPointMake(actualX, actualY);
     grass.zPosition = 1;
     [self addChild:grass];
     
@@ -293,13 +306,37 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //int maxDuration = 8.0;
     //int rangeDuration = maxDuration - minDuration;
     //int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    int actualDuration = 7.0;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:CGPointMake(-grass.size.width/2, actualY) duration:actualDuration];
     SKAction * actionMoveDone = [SKAction removeFromParent];
     
     [grass runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
+}
+
+-(void)addMountains {
+    // Background (mountains)
+    SKSpriteNode *mountains = [SKSpriteNode spriteNodeWithImageNamed:@"mountain"];
+    mountains.position = CGPointMake(self.frame.size.width + mountains.size.width/2, self.frame.size.height/3 + 105 );
+    mountains.name = @"MOUNTAINS";
+    mountains.zPosition = -3;
+    [self addChild:mountains];
+    
+    
+    // Determine speed of the monster
+    //int minDuration = 6.0;
+    //int maxDuration = 8.0;
+    //int rangeDuration = maxDuration - minDuration;
+    //int actualDuration = (arc4random() % rangeDuration) + minDuration;
+    int actualDuration = 50.0;
+    
+    // Create the actions
+    SKAction * actionMove = [SKAction moveTo:
+                             CGPointMake(-mountains.size.width/2, self.frame.size.height/3 +105)
+                                    duration:actualDuration];
+    SKAction * actionMoveDone = [SKAction removeFromParent];
+    
+    [mountains runAction:[SKAction sequence:@[actionMove, actionMoveDone]]];
 }
 
 -(void)addTemple1 {
@@ -415,7 +452,11 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnGrassTimeInterval +=timeSinceLast;
-    if(self.lastSpawnGrassTimeInterval>2) {
+    if(self.lastSpawnGrassTimeInterval>2 && self.startOfGame) {
+        self.lastSpawnGrassTimeInterval = 0;
+        self.startOfGame = NO;
+        [self addGrass];
+    } else if(self.lastSpawnGrassTimeInterval>4) {
         self.lastSpawnGrassTimeInterval = 0;
         [self addGrass];
     }
@@ -430,6 +471,12 @@ static const uint32_t boxCategory            =  0x1 << 1;
     if(self.lastSpawnTemple2TimeInterval>14) {
         self.lastSpawnTemple2TimeInterval = 0;
         [self addTemple2];
+    }
+    
+    self.lastSpawnMountainTimeInterval +=timeSinceLast;
+    if(self.lastSpawnMountainTimeInterval>30) {
+        self.lastSpawnMountainTimeInterval = 0;
+        [self addMountains];
     }
 }
 
