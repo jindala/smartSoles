@@ -114,7 +114,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
          
         // Sprite for invisible box to detect when monster is approaching.
         self.box = [SKSpriteNode spriteNodeWithImageNamed:@"invisible"];
-        self.box.position = CGPointMake(self.box.size.width/2 + 150, self.frame.size.height/3);
+        self.box.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/3);
         self.box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.box.size];
         self.box.physicsBody.dynamic = YES;
         self.box.physicsBody.categoryBitMask = boxCategory;
@@ -199,7 +199,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     SKTexture *temp = _ninjaWalkingFrames[0];
     _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-    _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
+    _ninja.position = CGPointMake(self.player.size.width + 40, self.frame.size.height/3 -50);
     [self addChild:_ninja];
     [self walkingNinja];
 }
@@ -257,23 +257,23 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)jumpingNinja
 {
     
-    SKAction *prepJump = [SKAction moveByX:0 y:60.0 duration:0.3];
+    //SKAction *prepJump = [SKAction moveByX:0 y:20.0 duration:0.1];
     SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
-                                        timePerFrame:1.4/3
+                                        timePerFrame:1.2/3
                                               resize:YES
                                               restore:YES];
     SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
-                                               timePerFrame:1.4/3
+                                               timePerFrame:1.2/3
                                                      resize:YES
                                                     restore:YES];
     
-    SKAction *moveUp = [SKAction moveByX:0 y:140.0 duration:0.7];
-    SKAction *moveDown = [SKAction moveByX:0 y:-140.0 duration:0.7];
-    SKAction *landing = [SKAction moveByX:0 y:-60.0 duration:0.3];
+    SKAction *moveUp = [SKAction moveByX:0 y:200.0 duration:0.8];
+    SKAction *moveDown = [SKAction moveByX:0 y:-200.0 duration:0.8];
+    //SKAction *landing = [SKAction moveByX:0 y:-20.0 duration:0.1];
     SKAction *removeNode = [SKAction removeFromParent];
     
-    SKAction *groupJumpUp = [SKAction group:@[prepJump, animateJumpUp, moveUp]];
-    SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown, landing]];
+    SKAction *groupJumpUp = [SKAction group:@[/*prepJump,*/ animateJumpUp, moveUp]];
+    SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown/*, landing*/]];
     SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown/*, removeNode*/]];
     // make ninja jump
     [_ninja runAction: sequence withKey:@"jumpingNinja"];
@@ -285,8 +285,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     // Create sprite
     SKSpriteNode * grass = [SKSpriteNode spriteNodeWithImageNamed:@"grass2"];
     int actualY = grass.size.height/4 + 20;
-    int actualX = grass.size.width/2 + 70;
-    int actualDuration = 6.0;
+    int actualX = grass.size.width/2;
+    float actualDuration = 5.5f;
     
     if ( !self.startOfGame ) {
         actualX = self.frame.size.width + grass.size.width/2;
@@ -452,7 +452,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnGrassTimeInterval +=timeSinceLast;
-    if(self.lastSpawnGrassTimeInterval>2 && self.startOfGame) {
+    if(self.lastSpawnGrassTimeInterval>1 && self.startOfGame) {
         self.lastSpawnGrassTimeInterval = 0;
         self.startOfGame = NO;
         [self addGrass];
