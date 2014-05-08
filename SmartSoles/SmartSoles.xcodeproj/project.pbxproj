@@ -15,10 +15,10 @@
 		3FA5D44D1919B9960033EDF1 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA5D44B1919B9960033EDF1 /* background.png */; };
 		3FA5D44E1919B9960033EDF1 /* mountain.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FA5D44C1919B9960033EDF1 /* mountain.png */; };
 		3FAC04011919C724003FFE52 /* grass2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC04001919C724003FFE52 /* grass2@2x.png */; };
+		3FAC0403191B121C003FFE52 /* NinjaImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0402191B121C003FFE52 /* NinjaImages.atlas */; };
 		3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3619171404006DAA41 /* templeLayer1@2x.png */; };
 		3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3719171404006DAA41 /* templeLayer2@2x.png */; };
 		3FC55A3F19172A3D006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */; };
-		3FC55A4119172A83006DAA41 /* NinjaImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A4019172A83006DAA41 /* NinjaImages.atlas */; };
 		840C790C18E6AFD400B4FFD1 /* SSHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */; };
 		840C790D18E6AFD400B4FFD1 /* SSHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */; };
 		848C340418E699AD00CA1DD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848C340318E699AD00CA1DD1 /* Foundation.framework */; };
@@ -95,10 +95,10 @@
 		3FA5D44B1919B9960033EDF1 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		3FA5D44C1919B9960033EDF1 /* mountain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mountain.png; sourceTree = "<group>"; };
 		3FAC04001919C724003FFE52 /* grass2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grass2@2x.png"; sourceTree = "<group>"; };
+		3FAC0402191B121C003FFE52 /* NinjaImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaImages.atlas; sourceTree = "<group>"; };
 		3FC55A3619171404006DAA41 /* templeLayer1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer1@2x.png"; sourceTree = "<group>"; };
 		3FC55A3719171404006DAA41 /* templeLayer2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer2@2x.png"; sourceTree = "<group>"; };
 		3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
-		3FC55A4019172A83006DAA41 /* NinjaImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaImages.atlas; sourceTree = "<group>"; };
 		840C790918E6AFD400B4FFD1 /* SSHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSHistoryViewController.h; sourceTree = "<group>"; };
 		840C790A18E6AFD400B4FFD1 /* SSHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSHistoryViewController.m; sourceTree = "<group>"; };
 		840C790B18E6AFD400B4FFD1 /* SSHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSHistoryViewController.xib; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 		84EE391A18E7D04A0094C355 /* GameScreen */ = {
 			isa = PBXGroup;
 			children = (
-				3FC55A4019172A83006DAA41 /* NinjaImages.atlas */,
+				3FAC0402191B121C003FFE52 /* NinjaImages.atlas */,
 				3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */,
 				84EE391B18E7D3040094C355 /* SSGameViewController.h */,
 				84EE391C18E7D3040094C355 /* SSGameViewController.m */,
@@ -528,7 +528,7 @@
 				3F42343918E8C48C007213B5 /* background-music-aac.caf in Resources */,
 				84EE392918E7D59C0094C355 /* pew-pew-lei.caf in Resources */,
 				3F42343518E8C451007213B5 /* invisible.png in Resources */,
-				3FC55A4119172A83006DAA41 /* NinjaImages.atlas in Resources */,
+				3FAC0403191B121C003FFE52 /* NinjaImages.atlas in Resources */,
 				84EE393E18E879260094C355 /* buttons.png in Resources */,
 				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
 				84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */,
