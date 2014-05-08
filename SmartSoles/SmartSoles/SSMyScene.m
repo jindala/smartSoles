@@ -328,7 +328,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //int maxDuration = 8.0;
     //int rangeDuration = maxDuration - minDuration;
     //int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    int actualDuration = 50.0;
+    int actualDuration = 100.0;
     
     // Create the actions
     SKAction * actionMove = [SKAction moveTo:
@@ -474,7 +474,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     }
     
     self.lastSpawnMountainTimeInterval +=timeSinceLast;
-    if(self.lastSpawnMountainTimeInterval>30) {
+    if(self.lastSpawnMountainTimeInterval>80) {
         self.lastSpawnMountainTimeInterval = 0;
         [self addMountains];
     }
