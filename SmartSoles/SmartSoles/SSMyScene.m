@@ -270,11 +270,17 @@ static const uint32_t boxCategory            =  0x1 << 1;
     SKAction *moveUp = [SKAction moveByX:0 y:200.0 duration:0.8];
     SKAction *moveDown = [SKAction moveByX:0 y:-200.0 duration:0.8];
     //SKAction *landing = [SKAction moveByX:0 y:-20.0 duration:0.1];
-    SKAction *removeNode = [SKAction removeFromParent];
+    //SKAction *removeNode = [SKAction removeFromParent];
     
     SKAction *groupJumpUp = [SKAction group:@[/*prepJump,*/ animateJumpUp, moveUp]];
     SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown/*, landing*/]];
-    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown/*, removeNode*/]];
+    // remove this if we are going to make ninja walk based solely on sole movement (no pun intended).
+    SKAction *walkingNinja = [SKAction repeatActionForever:
+                              [SKAction animateWithTextures:_ninjaWalkingFrames
+                                               timePerFrame:0.1f
+                                                     resize:YES
+                                                    restore:YES]];
+    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, walkingNinja/*, removeNode*/]];
     // make ninja jump
     [_ninja runAction: sequence withKey:@"jumpingNinja"];
     
