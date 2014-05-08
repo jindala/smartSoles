@@ -80,20 +80,6 @@ static const uint32_t boxCategory            =  0x1 << 1;
         [self addTemple2];
         [self addMountains];
         
-        /* FOR COLLISION -- not working yet. TODO.
-        _ninja = [SKSpriteNode spriteNodeWithTexture:
-                  [SKTexture textureWithImageNamed:@"ninja1"]];
-        _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
-        _ninja.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ninja.size];
-        _ninja.physicsBody.dynamic = YES;
-        _ninja.physicsBody.categoryBitMask = playerCategory;
-        _ninja.physicsBody.contactTestBitMask = monsterCategory;
-        _ninja.physicsBody.collisionBitMask = 0;
-        _ninja.physicsBody.usesPreciseCollisionDetection = YES;
-        _ninja.zPosition = 0;
-        [self addChild:_ninja];
-         */
-        
         // comment out when we are able to get device to make ninja walk
         [self setUpWalkingNinjaSprite];
         //[self setUpStandingNinjaSprite];
@@ -199,9 +185,23 @@ static const uint32_t boxCategory            =  0x1 << 1;
     
     SKTexture *temp = _ninjaWalkingFrames[0];
     _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
-    _ninja.position = CGPointMake(self.player.size.width + 40, self.frame.size.height/3 -50);
+    [self setUpNinjaCollision];
     [self addChild:_ninja];
     [self walkingNinja];
+}
+
+-(void)setUpNinjaCollision
+{
+    _ninja.position = CGPointMake(self.player.size.width + 40, self.frame.size.height/3 -50);
+    //_ninja = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ninja1"]];
+    //_ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
+    _ninja.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_ninja.size.width/6];
+    _ninja.physicsBody.dynamic = YES;
+    _ninja.physicsBody.categoryBitMask = playerCategory;
+    _ninja.physicsBody.contactTestBitMask = monsterCategory;
+    _ninja.physicsBody.collisionBitMask = 0;
+    _ninja.physicsBody.usesPreciseCollisionDetection = YES;
+    _ninja.zPosition = 0;
 }
 
 -(void)setUpJumpingNinjaSprite
@@ -238,6 +238,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     // do we need to use different node for jumping ninja? TODO
     _ninja = [SKSpriteNode spriteNodeWithTexture:temp];
     _ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
+    [self setUpNinjaCollision];
     [self addChild:_ninja];
     [self jumpingNinja];
     
@@ -283,6 +284,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
     SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, walkingNinja/*, removeNode*/]];
     // make ninja jump
     [_ninja runAction: sequence withKey:@"jumpingNinja"];
+    self.totalCaloriesBurnt =+.15;
+    [_scoreLabel addScore:0.15];
     
     return;
 }
@@ -446,8 +449,8 @@ static const uint32_t boxCategory            =  0x1 << 1;
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
     
     // Determine speed of the monster
-    int minDuration = 2;
-    int maxDuration = 7;
+    int minDuration = 3;
+    int maxDuration = 6;
     int rangeDuration = maxDuration - minDuration;
     int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
@@ -508,7 +511,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
             [self.view presentScene:gameOverScene transition:reveal];
     }];*/
     
-    /*
+    
     // Computer-generated voice to say "Ouch."
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Ouch"];
@@ -517,7 +520,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
-    */
+    
     //[player runAction:loseAction];
 }
 
