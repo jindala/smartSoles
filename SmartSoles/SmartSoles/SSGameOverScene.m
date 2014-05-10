@@ -28,7 +28,7 @@
     
     SKLabelNode *label = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     label.text = message;
-    label.fontSize = 40;
+    label.fontSize = 20;
     label.fontColor = [SKColor blackColor];
     label.position = CGPointMake(self.size.width/2, self.size.height /2);
     [self addChild:label];

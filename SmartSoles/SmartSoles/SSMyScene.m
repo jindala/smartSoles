@@ -22,11 +22,13 @@
 @property (nonatomic) NSTimeInterval lastSpawnTemple2TimeInterval;
 @property (nonatomic) NSTimeInterval lastSpawnMountainTimeInterval;
 @property (nonatomic) SKSpriteNode *calorieCounter;
+@property (nonatomic) SKSpriteNode *healthBar;
 @property (nonatomic) BOOL startOfGame;
 @property (nonatomic) float totalCaloriesBurnt;
 @property (nonatomic) NSMutableArray *lastActionArray;
 @property (nonatomic) int hurdles;
 @property (nonatomic) SSScoreLabel *scoreLabel;
+@property (nonatomic) int health;
 @end
 
 
@@ -53,11 +55,40 @@ static const uint32_t boxCategory            =  0x1 << 1;
 -(void)setupHUD {
     // position the scoreLabel in the frame
     _scoreLabel = [[SSScoreLabel alloc] initScoreLabel];
-    _scoreLabel.position = CGPointMake(self.frame.size.width/2 - _scoreLabel.frame.size.width/2,
+    _scoreLabel.position = CGPointMake(self.frame.size.width/2 /*- _scoreLabel.frame.size.width/2*/,
                                       self.frame.size.height - _scoreLabel.frame.size.height - 55);
     _scoreLabel.name = @"scoreLabel";
-    
     [self addChild:_scoreLabel];
+}
+
+-(void)updateHealthBar {
+
+    [_healthBar runAction:[SKAction removeFromParent]];
+    switch(_health){
+        case 100: case 90:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"healthBarFull"];
+            break;
+        case 80: case 70:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health4_5"];
+            break;
+        case 60: case 50:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health3_5"];
+            break;
+        case 40: case 30:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health2_5"];
+            break;
+        case 20: case 10:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health1_5"];
+            break;
+        case 0:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"];
+            break;
+        default:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"]; // or some sort of error handling goes here...
+    }
+    _healthBar.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 100);
+    _healthBar.zPosition = 0;
+    [self addChild:_healthBar];
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -68,7 +99,10 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.lastActionArray = [[NSMutableArray alloc] init];
         NSLog(@"Size: %@", NSStringFromCGSize(size));
         
-        // Background (mountains)
+        _health = 100;
+        [self updateHealthBar];
+        
+        // Background
         SKSpriteNode *sn = [SKSpriteNode spriteNodeWithImageNamed:@"background"];
         sn.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
         sn.name = @"BACKGROUND";
@@ -504,13 +538,6 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 - (void)projectile:(SKSpriteNode *)player didCollideWithMonster:(SKSpriteNode *)monster {
     NSLog(@"Did not hurdle");
-    /*SKAction *loseAction = [SKAction runBlock:^{
-            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
-                                                                       won:NO];
-            [self.view presentScene:gameOverScene transition:reveal];
-    }];*/
-    
     
     // Computer-generated voice to say "Ouch."
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
@@ -521,7 +548,21 @@ static const uint32_t boxCategory            =  0x1 << 1;
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
     
-    //[player runAction:loseAction];
+    _health -= 10;
+    
+    [self updateHealthBar];
+    
+    if( _health == 0 ) {
+        //game over
+        NSLog(@"Game over");
+        SKAction *loseAction = [SKAction runBlock:^{
+            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
+            SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
+                                                                       won:NO];
+            [self.view presentScene:gameOverScene transition:reveal];
+        }];
+        [_ninja runAction:loseAction];
+    }
 }
 
 - (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
