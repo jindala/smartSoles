@@ -22,6 +22,7 @@
 		3FAC0419191DCC46003FFE52 /* health3_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0413191DCC46003FFE52 /* health3_5@2x.png */; };
 		3FAC041A191DCC46003FFE52 /* health4_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0414191DCC46003FFE52 /* health4_5@2x.png */; };
 		3FAC041B191DCC46003FFE52 /* healthBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0415191DCC46003FFE52 /* healthBarFull@2x.png */; };
+		3FAC041D191DD4A3003FFE52 /* sword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC041C191DD4A3003FFE52 /* sword@2x.png */; };
 		3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3619171404006DAA41 /* templeLayer1@2x.png */; };
 		3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3719171404006DAA41 /* templeLayer2@2x.png */; };
 		3FC55A3F19172A3D006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */; };
@@ -108,6 +109,7 @@
 		3FAC0413191DCC46003FFE52 /* health3_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health3_5@2x.png"; sourceTree = "<group>"; };
 		3FAC0414191DCC46003FFE52 /* health4_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health4_5@2x.png"; sourceTree = "<group>"; };
 		3FAC0415191DCC46003FFE52 /* healthBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "healthBarFull@2x.png"; sourceTree = "<group>"; };
+		3FAC041C191DD4A3003FFE52 /* sword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sword@2x.png"; sourceTree = "<group>"; };
 		3FC55A3619171404006DAA41 /* templeLayer1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer1@2x.png"; sourceTree = "<group>"; };
 		3FC55A3719171404006DAA41 /* templeLayer2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer2@2x.png"; sourceTree = "<group>"; };
 		3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		848C340A18E699AD00CA1DD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3FAC041C191DD4A3003FFE52 /* sword@2x.png */,
 				3FAC0410191DCC46003FFE52 /* health0@2x.png */,
 				3FAC0411191DCC46003FFE52 /* health1_5@2x.png */,
 				3FAC0412191DCC46003FFE52 /* health2_5@2x.png */,
@@ -557,6 +560,7 @@
 				84EE394218E879690094C355 /* splashScreen1.png in Resources */,
 				84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */,
 				3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */,
+				3FAC041D191DD4A3003FFE52 /* sword@2x.png in Resources */,
 				3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE395818E8B8470094C355 /* stats@2x.png in Resources */,

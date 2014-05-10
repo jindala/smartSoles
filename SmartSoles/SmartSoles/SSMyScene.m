@@ -151,7 +151,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         CGPathMoveToPoint(pathToDraw, NULL, 0, self.frame.size.height/3 -90); // used to be -38
         CGPathAddLineToPoint(pathToDraw, NULL, 568.0, self.frame.size.height/3 -90); // used to be -38
         yourline.path = pathToDraw;
-        [yourline setStrokeColor:[UIColor clearColor]];
+        [yourline setStrokeColor:[UIColor grayColor]];
         yourline.zPosition = 0;
         [self addChild:yourline];
         
@@ -434,9 +434,21 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 - (void)addMonster {
     
-    // Create sprite
-    SKSpriteNode * monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdle"];
-    int actualY = self.frame.size.height/3 -50;
+    int coinFlip = arc4random() % 2;
+    NSLog(@"%i", coinFlip);
+    int actualY;
+    SKSpriteNode *monster;
+    
+    // flip coin to decide whether to show hurdle or swords
+    if (coinFlip == 1) {
+        // Create sprite
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdle"];
+        actualY = self.frame.size.height/3 -50;
+    } else {
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"sword"];
+        actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
+    }
+    
     
     // Create the monster slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
@@ -521,6 +533,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         self.lastSpawnMountainTimeInterval = 0;
         [self addMountains];
     }
+    
 }
 
 - (void)update:(NSTimeInterval)currentTime {
