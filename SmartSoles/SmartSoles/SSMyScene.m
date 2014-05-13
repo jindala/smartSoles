@@ -24,11 +24,13 @@
 @property (nonatomic) SKSpriteNode *calorieCounter;
 @property (nonatomic) SKSpriteNode *healthBar;
 @property (nonatomic) BOOL startOfGame;
+@property (nonatomic) BOOL collision;
 @property (nonatomic) float totalCaloriesBurnt;
 @property (nonatomic) NSMutableArray *lastActionArray;
 @property (nonatomic) int hurdles;
 @property (nonatomic) SSScoreLabel *scoreLabel;
 @property (nonatomic) int health;
+@property (nonatomic) int dieRoll;
 @end
 
 
@@ -45,6 +47,12 @@
 static const uint32_t playerCategory         =  0x1 << 0;
 static const uint32_t monsterCategory        =  0x1 << 2;
 static const uint32_t boxCategory            =  0x1 << 1;
+static const int SHOW_SMALL_HURDLE = 0;
+static const int SHOW_SWORDS = 1;
+static const int SHOW_CRACK = 2;
+static const int SHOW_LAVA = 3;
+static const int SHOW_MED_HURDLE = 4;
+static const int SHOW_BIG_HURDLE = 5;
 @synthesize latestSoleData = _latestSoleData;
 
 -(void)setLatestSoleData:(NSMutableDictionary *)latestSoleData {
@@ -59,36 +67,6 @@ static const uint32_t boxCategory            =  0x1 << 1;
                                       self.frame.size.height - _scoreLabel.frame.size.height - 55);
     _scoreLabel.name = @"scoreLabel";
     [self addChild:_scoreLabel];
-}
-
--(void)updateHealthBar {
-
-    [_healthBar runAction:[SKAction removeFromParent]];
-    switch(_health){
-        case 100: case 90:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"healthBarFull"];
-            break;
-        case 80: case 70:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health4_5"];
-            break;
-        case 60: case 50:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health3_5"];
-            break;
-        case 40: case 30:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health2_5"];
-            break;
-        case 20: case 10:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health1_5"];
-            break;
-        case 0:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"];
-            break;
-        default:
-            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"]; // or some sort of error handling goes here...
-    }
-    _healthBar.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 100);
-    _healthBar.zPosition = 0;
-    [self addChild:_healthBar];
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -145,6 +123,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
         [self addChild:self.box];
         
         
+        /*
         // Line
         SKShapeNode *yourline = [SKShapeNode node];
         CGMutablePathRef pathToDraw = CGPathCreateMutable();
@@ -154,8 +133,10 @@ static const uint32_t boxCategory            =  0x1 << 1;
         [yourline setStrokeColor:[UIColor grayColor]];
         yourline.zPosition = 0;
         [self addChild:yourline];
+        */
         
         self.physicsWorld.gravity = CGVectorMake(0,0);
+        //self.physicsWorld.gravity = CGVectorMake(0,-10.0/150.0);
         self.physicsWorld.contactDelegate = self;
         
          
@@ -226,16 +207,22 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 -(void)setUpNinjaCollision
 {
-    _ninja.position = CGPointMake(self.player.size.width + 40, self.frame.size.height/3 -50);
+    _ninja.position = CGPointMake(40,  self.frame.size.height/3 -60);
     //_ninja = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ninja1"]];
     //_ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
-    _ninja.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_ninja.size.width/6];
+    //_ninja.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ninja.size];
+    _ninja.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_ninja.size.width/6
+                                center:CGPointMake(_ninja.size.width/2, 0)];
+    //_ninja.physicsBody = [SKPhysicsBody
+    //                      bodyWithEdgeFromPoint:CGPointMake(40, self.frame.size.height/3 -50)
+    //                      toPoint:CGPointMake(40+_ninja.size.width, self.frame.size.height/3 -50)];
     _ninja.physicsBody.dynamic = YES;
     _ninja.physicsBody.categoryBitMask = playerCategory;
     _ninja.physicsBody.contactTestBitMask = monsterCategory;
     _ninja.physicsBody.collisionBitMask = 0;
+    _ninja.physicsBody.mass = 1.0;
     _ninja.physicsBody.usesPreciseCollisionDetection = YES;
-    _ninja.zPosition = 0;
+    _ninja.zPosition = 2;
 }
 
 -(void)setUpJumpingNinjaSprite
@@ -260,7 +247,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [jumpUpFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
                              [NSString stringWithFormat:@"ninjaJump2"]]];
     [jumpDownFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
-                            [NSString stringWithFormat:@"ninjaJump3"]]];
+                             [NSString stringWithFormat:@"ninjaJump3"]]];
     [jumpDownFrames addObject:[ninjaJumpAnimatedAtlas textureNamed:
                              [NSString stringWithFormat:@"ninjaJump1"]]];
     
@@ -280,6 +267,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 -(void)walkingNinja
 {
+    _collision = NO;
     // make ninja walk
     [_ninja runAction:[SKAction repeatActionForever:
                       [SKAction animateWithTextures:_ninjaWalkingFrames
@@ -289,25 +277,26 @@ static const uint32_t boxCategory            =  0x1 << 1;
     return;
 }
 
--(void)jumpingNinja
+-(void)fallingNinja
 {
     
     //SKAction *prepJump = [SKAction moveByX:0 y:20.0 duration:0.1];
-    SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
+    /*SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
                                         timePerFrame:1.2/3
                                               resize:YES
                                               restore:YES];
-    SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
+    */
+     SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
                                                timePerFrame:1.2/3
                                                      resize:YES
                                                     restore:YES];
     
-    SKAction *moveUp = [SKAction moveByX:0 y:200.0 duration:0.8];
-    SKAction *moveDown = [SKAction moveByX:0 y:-200.0 duration:0.8];
+    //SKAction *moveUp = [SKAction moveByX:0 y:250.0 duration:0.8];
+    SKAction *moveDown = [SKAction moveByX:0 y:-250.0 duration:0.8];
     //SKAction *landing = [SKAction moveByX:0 y:-20.0 duration:0.1];
     //SKAction *removeNode = [SKAction removeFromParent];
     
-    SKAction *groupJumpUp = [SKAction group:@[/*prepJump,*/ animateJumpUp, moveUp]];
+    //SKAction *groupJumpUp = [SKAction group:@[/*prepJump,*/ animateJumpUp, moveUp]];
     SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown/*, landing*/]];
     // remove this if we are going to make ninja walk based solely on sole movement (no pun intended).
     SKAction *walkingNinja = [SKAction repeatActionForever:
@@ -315,14 +304,52 @@ static const uint32_t boxCategory            =  0x1 << 1;
                                                timePerFrame:0.1f
                                                      resize:YES
                                                     restore:YES]];
-    SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, walkingNinja/*, removeNode*/]];
+    SKAction *sequence = [SKAction sequence:@[/*groupJumpUp, */groupJumpDown, walkingNinja/*, removeNode*/]];
     // make ninja jump
-    [_ninja runAction: sequence withKey:@"jumpingNinja"];
+    [_ninja runAction: sequence withKey:@"fallingNinja"];
     self.totalCaloriesBurnt =+.15;
     [_scoreLabel addScore:0.15];
     
     return;
 }
+
+-(void)jumpingNinja
+{
+    //SKAction *prepJump = [SKAction moveByX:0 y:20.0 duration:0.1];
+    SKAction *animateJumpUp = [SKAction animateWithTextures:_ninjaJumpUpFrames
+                                               timePerFrame:1.2/3
+                                                     resize:YES
+                                                    restore:YES];
+    /*
+    SKAction *animateJumpDown = [SKAction animateWithTextures:_ninjaJumpDownFrames
+                                                 timePerFrame:1.2/3
+                                                       resize:YES
+                                                      restore:YES];
+    */
+    SKAction *moveUp = [SKAction moveByX:0 y:250.0 duration:0.8];
+    //SKAction *moveDown = [SKAction moveByX:0 y:-250.0 duration:0.8];
+    //SKAction *landing = [SKAction moveByX:0 y:-20.0 duration:0.1];
+    //SKAction *removeNode = [SKAction removeFromParent];
+    
+    SKAction *groupJumpUp = [SKAction group:@[/*prepJump,*/ animateJumpUp, moveUp]];
+    //SKAction *groupJumpDown = [SKAction group:@[moveDown, animateJumpDown/*, landing*/]];
+    // remove this if we are going to make ninja walk based solely on sole movement (no pun intended).
+    /*SKAction *walkingNinja = [SKAction repeatActionForever:
+                              [SKAction animateWithTextures:_ninjaWalkingFrames
+                                               timePerFrame:0.1f
+                                                     resize:YES
+                                                    restore:YES]];
+    */
+     //SKAction *sequence = [SKAction sequence:@[groupJumpUp, groupJumpDown, walkingNinja/*, removeNode*/]];
+    // make ninja jump
+    [_ninja runAction: groupJumpUp withKey:@"jumpingNinja"];
+    //[_ninja runAction: sequence withKey:@"jumpingNinja"];
+    self.totalCaloriesBurnt =+.15;
+    [_scoreLabel addScore:0.15];
+    
+    return;
+}
+
 
 -(void)addGrass {
     // Create sprite
@@ -434,19 +461,50 @@ static const uint32_t boxCategory            =  0x1 << 1;
 
 - (void)addMonster {
     
-    int coinFlip = arc4random() % 2;
-    NSLog(@"%i", coinFlip);
+    _dieRoll = arc4random() % 6;
+    NSLog(@"dieRoll = %i", _dieRoll);
     int actualY;
     SKSpriteNode *monster;
     
-    // flip coin to decide whether to show hurdle or swords
-    if (coinFlip == 1) {
+    // pick to show hurdle or swords or crack
+    if (_dieRoll == SHOW_SMALL_HURDLE) {
         // Create sprite
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdle"];
         actualY = self.frame.size.height/3 -50;
-    } else {
+        monster.zPosition = 0;
+        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
+                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+    } else if (_dieRoll == SHOW_SWORDS) {
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"sword"];
         actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
+        monster.zPosition = 0;
+        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+    } else if (_dieRoll == SHOW_CRACK) {
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"crackPit"];
+        actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
+        monster.zPosition = 1;
+        monster.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:monster.size.width/2
+                               /*bodyWithEdgeFromPoint:CGPointMake(0, self.frame.size.height/3 -50)
+                               toPoint:CGPointMake(monster.size.width, self.frame.size.height/3 -50)*/];
+    } else if (_dieRoll == SHOW_MED_HURDLE) {
+        // Create sprite
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdleMed"];
+        actualY = self.frame.size.height/3 -50;
+        monster.zPosition = 0;
+        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
+                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+    } else if (_dieRoll == SHOW_BIG_HURDLE) {
+        // Create sprite
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdleTall"];
+        actualY = self.frame.size.height/3 -50;
+        monster.zPosition = 0;
+        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
+                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+    } else {
+        monster = [SKSpriteNode spriteNodeWithImageNamed:@"lava"];
+        actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
+        monster.zPosition = 0;
+        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
     }
     
     
@@ -455,15 +513,10 @@ static const uint32_t boxCategory            =  0x1 << 1;
     monster.position = CGPointMake(self.frame.size.width + monster.size.width/2, actualY);
 
     // Collision detection
-    monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
     monster.physicsBody.dynamic = YES;
     monster.physicsBody.categoryBitMask = monsterCategory;
     monster.physicsBody.contactTestBitMask = playerCategory | boxCategory;
     monster.physicsBody.collisionBitMask = 0;
-    monster.zPosition = 0;
-
-    
-    
     
     [self addChild:monster];
     
@@ -493,6 +546,14 @@ static const uint32_t boxCategory            =  0x1 << 1;
 }
 
 - (void)updateWithTimeSinceLastUpdate:(CFTimeInterval)timeSinceLast {
+    
+    if(_collision && _dieRoll == SHOW_CRACK) {
+        [_ninja.physicsBody applyForce:CGVectorMake(0, -1000*_ninja.physicsBody.mass)];
+    }
+    
+    if(_ninja.position.y < 0) {
+        [self showGameOver];
+    }
     
     // Determine speed of the monster
     int minDuration = 3;
@@ -537,6 +598,7 @@ static const uint32_t boxCategory            =  0x1 << 1;
 }
 
 - (void)update:(NSTimeInterval)currentTime {
+    
     // Handle time delta.
     // If we drop below 60fps, we still want everything to move the same distance.
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
@@ -552,30 +614,40 @@ static const uint32_t boxCategory            =  0x1 << 1;
 - (void)projectile:(SKSpriteNode *)player didCollideWithMonster:(SKSpriteNode *)monster {
     NSLog(@"Did not hurdle");
     
-    // Computer-generated voice to say "Ouch."
-    AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
-    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Ouch"];
-    [utterance setRate:0.25f];
-    [utterance setPitchMultiplier:0.75f];
-    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
-    //utterance.preUtteranceDelay = 0.1;
-    [synthesizer speakUtterance:utterance];
+    if ( _dieRoll == SHOW_CRACK ) {
+        _collision = YES;
+        //[self showGameOver]; // this is being shown too fast...cannot see ninja fall.
+    }
+    else {
+        // Computer-generated voice to say "Ouch."
+        AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
+        AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Ouch"];
+        [utterance setRate:0.25f];
+        [utterance setPitchMultiplier:0.75f];
+        utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
+        //utterance.preUtteranceDelay = 0.1;
+        [synthesizer speakUtterance:utterance];
     
-    _health -= 10;
+        _health -= 10;
+    }
     
     [self updateHealthBar];
     
     if( _health == 0 ) {
-        //game over
-        NSLog(@"Game over");
-        SKAction *loseAction = [SKAction runBlock:^{
-            SKTransition *reveal = [SKTransition flipHorizontalWithDuration:0.5];
-            SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
-                                                                       won:NO];
-            [self.view presentScene:gameOverScene transition:reveal];
-        }];
-        [_ninja runAction:loseAction];
+        [self showGameOver];
     }
+}
+
+- (void)showGameOver {
+    //game over
+    NSLog(@"Game over");
+    SKAction *loseAction = [SKAction runBlock:^{
+        SKTransition *reveal = [SKTransition flipHorizontalWithDuration:2.0];
+        SKScene *gameOverScene = [[SSGameOverScene alloc] initWithSize:self.size
+                                                                   won:NO];
+        [self.view presentScene:gameOverScene transition:reveal];
+    }];
+    [_ninja runAction:loseAction];
 }
 
 - (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
@@ -646,6 +718,11 @@ static const uint32_t boxCategory            =  0x1 << 1;
     [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
     
     [_scoreLabel addScore:0.15];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self fallingNinja];
+    
 }
 
 -(CGMutablePathRef) createJumpPath {
@@ -730,6 +807,36 @@ static const uint32_t boxCategory            =  0x1 << 1;
         }
         
     }
+}
+
+-(void)updateHealthBar {
+    
+    [_healthBar runAction:[SKAction removeFromParent]];
+    switch(_health){
+        case 100: case 90:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"healthBarFull"];
+            break;
+        case 80: case 70:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health4_5"];
+            break;
+        case 60: case 50:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health3_5"];
+            break;
+        case 40: case 30:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health2_5"];
+            break;
+        case 20: case 10:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health1_5"];
+            break;
+        case 0:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"];
+            break;
+        default:
+            _healthBar = [SKSpriteNode spriteNodeWithImageNamed:@"health0"]; // or some sort of error handling goes here...
+    }
+    _healthBar.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 100);
+    _healthBar.zPosition = 0;
+    [self addChild:_healthBar];
 }
 
 @end
