@@ -109,10 +109,10 @@ static const int SHOW_BIG_HURDLE = 5;
         self.player.zPosition = .5;
         [self addChild:self.player];
         */
-         
+        
         // Sprite for invisible box to detect when monster is approaching.
         self.box = [SKSpriteNode spriteNodeWithImageNamed:@"invisible"];
-        self.box.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/3);
+        self.box.position = CGPointMake(self.frame.size.width/2, CGRectGetMinY(self.frame) +20 );
         self.box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.box.size];
         self.box.physicsBody.dynamic = YES;
         self.box.physicsBody.categoryBitMask = boxCategory;
@@ -211,8 +211,25 @@ static const int SHOW_BIG_HURDLE = 5;
     //_ninja = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"ninja1"]];
     //_ninja.position = CGPointMake(self.player.size.width + 30, self.frame.size.height/3 -50);
     //_ninja.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_ninja.size];
-    _ninja.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_ninja.size.width/6
-                                center:CGPointMake(_ninja.size.width/2, 0)];
+    
+    CGFloat offsetX = _ninja.frame.size.width * _ninja.anchorPoint.x;
+    CGFloat offsetY = _ninja.frame.size.height * _ninja.anchorPoint.y;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(path, NULL, 47 - offsetX, 14 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 33 - offsetX, 64 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 32 - offsetX, 154 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 56 - offsetX, 171 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 86 - offsetX, 128 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 59 - offsetX, 14 - offsetY);
+    
+    CGPathCloseSubpath(path);
+    
+    _ninja.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+    
+    //_ninja.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_ninja.size.width/6
+    //                            center:CGPointMake(_ninja.size.width/2, 0)];
     //_ninja.physicsBody = [SKPhysicsBody
     //                      bodyWithEdgeFromPoint:CGPointMake(40, self.frame.size.height/3 -50)
     //                      toPoint:CGPointMake(40+_ninja.size.width, self.frame.size.height/3 -50)];
@@ -470,41 +487,122 @@ static const int SHOW_BIG_HURDLE = 5;
     if (_dieRoll == SHOW_SMALL_HURDLE) {
         // Create sprite
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdle"];
-        actualY = self.frame.size.height/3 -50;
+        actualY = self.frame.size.height/3 -70;
         monster.zPosition = 0;
-        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
-                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 16 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 18 - offsetX, 135 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 59 - offsetX, 135 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 61 - offsetX, 1 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     } else if (_dieRoll == SHOW_SWORDS) {
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"sword"];
         actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
         monster.zPosition = 0;
-        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 20 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 22 - offsetX, 108 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 61 - offsetX, 165 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 144 - offsetX, 137 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 153 - offsetX, 114 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 153 - offsetX, 1 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     } else if (_dieRoll == SHOW_CRACK) {
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"crackPit"];
         actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
         monster.zPosition = 1;
-        monster.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:monster.size.width/2
-                               /*bodyWithEdgeFromPoint:CGPointMake(0, self.frame.size.height/3 -50)
-                               toPoint:CGPointMake(monster.size.width, self.frame.size.height/3 -50)*/];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 18 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 79 - offsetX, 125 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 138 - offsetX, 1 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     } else if (_dieRoll == SHOW_MED_HURDLE) {
         // Create sprite
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdleMed"];
         actualY = self.frame.size.height/3 -50;
         monster.zPosition = 0;
-        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
-                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 17 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 18 - offsetX, 188 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 60 - offsetX, 188 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 61 - offsetX, 0 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     } else if (_dieRoll == SHOW_BIG_HURDLE) {
         // Create sprite
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"hurdleTall"];
         actualY = self.frame.size.height/3 -50;
         monster.zPosition = 0;
-        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size
-                               center:CGPointMake(monster.size.width/2, monster.size.height/2 - 40)];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 16 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 19 - offsetX, 263 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 60 - offsetX, 263 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 62 - offsetX, 1 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     } else {
         monster = [SKSpriteNode spriteNodeWithImageNamed:@"lava"];
-        actualY = CGRectGetMinY(self.frame) + monster.size.height/2;
+        actualY = CGRectGetMinY(self.frame) + monster.size.height*2/3;
         monster.zPosition = 0;
-        monster.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:monster.size];
+        
+        CGFloat offsetX = monster.frame.size.width * monster.anchorPoint.x;
+        CGFloat offsetY = monster.frame.size.height * monster.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 16 - offsetX, 72 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 277 - offsetX, 72 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 277 - offsetX, 29 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 146 - offsetX, 7 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 24 - offsetX, 35 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        monster.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        
     }
     
     
@@ -653,6 +751,7 @@ static const int SHOW_BIG_HURDLE = 5;
 - (void)projectile:(SKSpriteNode *)box didBoxCollideWithMonster:(SKSpriteNode *)monster {
     NSLog(@"Box colliding with Monster");
     
+    /*
     // Computer-generated voice to say "Jump."
     AVSpeechSynthesizer *synthesizer = [[AVSpeechSynthesizer alloc] init];
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:@"Jump"];
@@ -661,6 +760,7 @@ static const int SHOW_BIG_HURDLE = 5;
     utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-GB"];
     //utterance.preUtteranceDelay = 0.1;
     [synthesizer speakUtterance:utterance];
+     */
 }
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
@@ -697,6 +797,8 @@ static const int SHOW_BIG_HURDLE = 5;
     //SKAction *followTrack = [SKAction followPath:[self createJumpPath] asOffset:NO orientToPath:NO duration:1.0];
     
     [self setUpJumpingNinjaSprite];
+    [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
+    [_scoreLabel addScore:0.15];
     
     /*
     CGMutablePathRef fallPath = [self createFallPath];
@@ -715,14 +817,11 @@ static const int SHOW_BIG_HURDLE = 5;
     
     //[self.player runAction:followTrack withKey:@"jumping"];
     // JUMP SOUND
-    [self runAction:[SKAction playSoundFileNamed:@"woosh2.caf" waitForCompletion:NO]];
     
-    [_scoreLabel addScore:0.15];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [self fallingNinja];
-    
 }
 
 -(CGMutablePathRef) createJumpPath {

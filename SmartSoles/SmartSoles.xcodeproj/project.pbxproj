@@ -22,12 +22,12 @@
 		3FAC0419191DCC46003FFE52 /* health3_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0413191DCC46003FFE52 /* health3_5@2x.png */; };
 		3FAC041A191DCC46003FFE52 /* health4_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0414191DCC46003FFE52 /* health4_5@2x.png */; };
 		3FAC041B191DCC46003FFE52 /* healthBarFull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC0415191DCC46003FFE52 /* healthBarFull@2x.png */; };
-		3FAC041D191DD4A3003FFE52 /* sword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC041C191DD4A3003FFE52 /* sword@2x.png */; };
+		3FAC041D191DD4A3003FFE52 /* sword.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FAC041C191DD4A3003FFE52 /* sword.png */; };
 		3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3619171404006DAA41 /* templeLayer1@2x.png */; };
 		3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3719171404006DAA41 /* templeLayer2@2x.png */; };
 		3FC55A3F19172A3D006DAA41 /* NinjaJumpImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */; };
 		3FE01CDE191EBFDF00EC1C61 /* crackPit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CDD191EBFDF00EC1C61 /* crackPit.png */; };
-		3FE01CE01921C05B00EC1C61 /* lava@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CDF1921C05B00EC1C61 /* lava@2x.png */; };
+		3FE01CE01921C05B00EC1C61 /* lava.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CDF1921C05B00EC1C61 /* lava.png */; };
 		3FE01CE41921D7D500EC1C61 /* gameOverScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CE31921D7D500EC1C61 /* gameOverScreen@2x.png */; };
 		3FE01CE71921DF7D00EC1C61 /* hurdleMed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CE51921DF7D00EC1C61 /* hurdleMed.png */; };
 		3FE01CE81921DF7D00EC1C61 /* hurdleTall.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FE01CE61921DF7D00EC1C61 /* hurdleTall.png */; };
@@ -114,12 +114,12 @@
 		3FAC0413191DCC46003FFE52 /* health3_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health3_5@2x.png"; sourceTree = "<group>"; };
 		3FAC0414191DCC46003FFE52 /* health4_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "health4_5@2x.png"; sourceTree = "<group>"; };
 		3FAC0415191DCC46003FFE52 /* healthBarFull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "healthBarFull@2x.png"; sourceTree = "<group>"; };
-		3FAC041C191DD4A3003FFE52 /* sword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sword@2x.png"; sourceTree = "<group>"; };
+		3FAC041C191DD4A3003FFE52 /* sword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sword.png; sourceTree = "<group>"; };
 		3FC55A3619171404006DAA41 /* templeLayer1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer1@2x.png"; sourceTree = "<group>"; };
 		3FC55A3719171404006DAA41 /* templeLayer2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "templeLayer2@2x.png"; sourceTree = "<group>"; };
 		3FC55A3E19172A3D006DAA41 /* NinjaJumpImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = NinjaJumpImages.atlas; sourceTree = "<group>"; };
 		3FE01CDD191EBFDF00EC1C61 /* crackPit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crackPit.png; sourceTree = "<group>"; };
-		3FE01CDF1921C05B00EC1C61 /* lava@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lava@2x.png"; sourceTree = "<group>"; };
+		3FE01CDF1921C05B00EC1C61 /* lava.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lava.png; sourceTree = "<group>"; };
 		3FE01CE31921D7D500EC1C61 /* gameOverScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameOverScreen@2x.png"; sourceTree = "<group>"; };
 		3FE01CE51921DF7D00EC1C61 /* hurdleMed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdleMed.png; sourceTree = "<group>"; };
 		3FE01CE61921DF7D00EC1C61 /* hurdleTall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hurdleTall.png; sourceTree = "<group>"; };
@@ -303,9 +303,9 @@
 				3FE01CE51921DF7D00EC1C61 /* hurdleMed.png */,
 				3FE01CE61921DF7D00EC1C61 /* hurdleTall.png */,
 				3FE01CE31921D7D500EC1C61 /* gameOverScreen@2x.png */,
-				3FE01CDF1921C05B00EC1C61 /* lava@2x.png */,
+				3FE01CDF1921C05B00EC1C61 /* lava.png */,
 				3FE01CDD191EBFDF00EC1C61 /* crackPit.png */,
-				3FAC041C191DD4A3003FFE52 /* sword@2x.png */,
+				3FAC041C191DD4A3003FFE52 /* sword.png */,
 				3FAC0410191DCC46003FFE52 /* health0@2x.png */,
 				3FAC0411191DCC46003FFE52 /* health1_5@2x.png */,
 				3FAC0412191DCC46003FFE52 /* health2_5@2x.png */,
@@ -572,14 +572,14 @@
 				3FAC041B191DCC46003FFE52 /* healthBarFull@2x.png in Resources */,
 				84EE393E18E879260094C355 /* buttons.png in Resources */,
 				84EE391F18E7D3040094C355 /* SSGameViewController.xib in Resources */,
-				3FE01CE01921C05B00EC1C61 /* lava@2x.png in Resources */,
+				3FE01CE01921C05B00EC1C61 /* lava.png in Resources */,
 				84EE393618E876510094C355 /* SSHomeViewController.xib in Resources */,
 				84EE396018E8C70F0094C355 /* AppIcon.png in Resources */,
 				84EE392A18E7D59C0094C355 /* sprites.atlas in Resources */,
 				84EE394218E879690094C355 /* splashScreen1.png in Resources */,
 				84EE394E18E8A50B0094C355 /* ninja@2x.png in Resources */,
 				3FC55A3819171404006DAA41 /* templeLayer1@2x.png in Resources */,
-				3FAC041D191DD4A3003FFE52 /* sword@2x.png in Resources */,
+				3FAC041D191DD4A3003FFE52 /* sword.png in Resources */,
 				3FC55A3919171404006DAA41 /* templeLayer2@2x.png in Resources */,
 				848C340E18E699AD00CA1DD1 /* InfoPlist.strings in Resources */,
 				84EE395818E8B8470094C355 /* stats@2x.png in Resources */,
